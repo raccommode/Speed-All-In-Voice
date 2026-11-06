@@ -14,6 +14,7 @@ from .backends import SpeechModels
 from .config import Settings
 from .llm import LLM
 from .pipeline import respond
+from .recognition import EarlyRecognition
 
 logger = logging.getLogger(__name__)
 WEB = Path(__file__).parent / "web"
@@ -28,6 +29,8 @@ def create_app(settings=None, models=None, llm=None):
     @asynccontextmanager
     async def lifespan(app):
         await asyncio.to_thread(speech.load)
+        if hasattr(language_model, "warm"):
+            await language_model.warm()
         yield
         await language_model.close()
 
@@ -81,6 +84,7 @@ def create_app(settings=None, models=None, llm=None):
         pending = np.empty(0, np.float32)
         endpoint = Endpoint(settings.silence_ms, settings.max_turn_seconds)
         speech.reset_vad()
+        early = EarlyRecognition(speech, settings.early_stt_ms)
         send_lock = asyncio.Lock()
 
         async def emit(event):
@@ -97,10 +101,18 @@ def create_app(settings=None, models=None, llm=None):
                     await task
             task = None
 
-        async def run_turn(audio=None, text=None):
+        async def run_turn(audio=None, text=None, transcription=None):
             try:
                 await respond(
-                    speech, language_model, settings, history, emit, turn, audio=audio, text=text
+                    speech,
+                    language_model,
+                    settings,
+                    history,
+                    emit,
+                    turn,
+                    audio=audio,
+                    text=text,
+                    transcription=transcription,
                 )
             except asyncio.CancelledError:
                 raise
@@ -124,14 +136,18 @@ def create_app(settings=None, models=None, llm=None):
                     pending = np.concatenate([pending, decode_pcm(message["bytes"])])
                     while len(pending) >= FRAME:
                         frame, pending = pending[:FRAME], pending[FRAME:]
-                        started, audio = endpoint.feed(frame, speech.probability(frame))
+                        probability = speech.probability(frame)
+                        started, audio = endpoint.feed(frame, probability)
+                        early.observe(endpoint, probability >= 0.5)
                         if started:
                             await interrupt()
                             await emit({"type": "speech_started"})
                         if audio is not None:
                             await interrupt()
                             turn += 1
-                            task = asyncio.create_task(run_turn(audio=audio))
+                            task = asyncio.create_task(
+                                run_turn(audio=audio, transcription=early.take())
+                            )
                 elif message.get("text"):
                     import json
 
@@ -139,12 +155,16 @@ def create_app(settings=None, models=None, llm=None):
                     if event.get("type") == "cancel":
                         await interrupt()
                         endpoint.reset()
+                        early.invalidate()
                         pending = np.empty(0, np.float32)
                     elif event.get("type") == "text":
                         text = event.get("text")
                         if not isinstance(text, str) or not 1 <= len(text) <= 4000:
                             raise ValueError("Text must contain 1–4000 characters")
                         await interrupt()
+                        endpoint.reset()
+                        early.invalidate()
+                        pending = np.empty(0, np.float32)
                         turn += 1
                         task = asyncio.create_task(run_turn(text=text))
         except (WebSocketDisconnect, RuntimeError):
@@ -156,6 +176,7 @@ def create_app(settings=None, models=None, llm=None):
                 task.cancel()
                 with contextlib.suppress(asyncio.CancelledError):
                     await task
+            await early.close()
             occupied = False
 
     return app

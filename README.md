@@ -4,7 +4,8 @@ An independent, local voice runtime for **Ollama and AI agents**. Speak, get a s
 
 **Experimental v0.1.** One active conversation per worker. The runtime combines existing speech models with a small orchestration layer. Performance claims are backed by [raw benchmark results](benchmarks/results) and [methodology](benchmarks/README.md).
 
-Measured baseline on a **Mac mini M4, 16 GB**: **1.035 s median** from estimated end of synthetic French speech to first audio received over WebSocket (10 warm runs; excludes speaker playback). In-process committed-turn timing is 437 ms in English / 487 ms in French. See the [full methodology and NVIDIA component results](benchmarks/README.md) before comparing these numbers.
+Latest paired test on a **Mac mini M4, 16 GB**: **686 ms median** from estimated end of synthetic French speech to first audio received, versus 912 ms with the previous scheduling policy (five warm runs each; excludes speaker playback). See [latency tuning and its limitations](benchmarks/LATENCY_TUNING.md). Older measurements remain in the [benchmark archive](benchmarks/README.md).
+
 
 ## Quick start — Apple Silicon
 
@@ -18,7 +19,7 @@ uv sync --extra mac
 uv run --extra mac speed-voice
 ```
 
-Open **http://127.0.0.1:8765**, press **Start conversation**, and allow the microphone. Headphones reduce false interruptions caused by speaker echo. Model downloads and warm-up happen before the server becomes ready. Hugging Face may require accepting Pocket TTS model terms and logging in (`hf auth login`) for cloning weights. No account credentials or reference recordings are included in this repository.
+Open **http://127.0.0.1:8765**, press **Start conversation**, and allow the microphone. Headphones reduce false interruptions caused by speaker echo. Speech model downloads and warm-up, plus loading the selected local Ollama model, happen before the server becomes ready. Hugging Face may require accepting Pocket TTS model terms and logging in (`hf auth login`) for cloning weights. No account credentials or reference recordings are included in this repository.
 
 The default uses MLX Whisper on the Apple GPU and Pocket TTS on two CPU threads, leaving GPU capacity for Ollama. The TTS device choice is intentional: GPU offload is not automatically faster for a small streaming model.
 
@@ -68,8 +69,9 @@ The reference is encoded once at startup. It is not uploaded to the LLM. Voice p
 
 - Resident speech models and precomputed voice conditioning.
 - 32 ms microphone frames; Silero VAD with pre-roll and configurable endpoint silence.
+- Recognition starts after 128 ms of silence while the 320 ms endpoint is still pending. Resumed speech invalidates this attempt; no LLM or agent call happens before commitment.
 - LLM token streaming overlaps a bounded phrase queue and TTS audio streaming.
-- The first short clause, or roughly 32 characters ending at a word boundary, can be spoken before the complete answer exists. Subsequent chunks allow up to 140 characters for smoother phrasing.
+- The first short clause, or roughly 16 characters ending at a word boundary, can be spoken before the complete answer exists. Subsequent chunks allow up to 64 characters for smoother phrasing.
 - Metrics explicitly compare first audio with the end of the LLM stream; see the [Ollama comparison](benchmarks/LLM_COMPARISON.md).
 - Barge-in cancels the LLM request, signals native synthesis, and clears client playback.
 - A single active session avoids unbounded GPU queues. Deploy separate workers for more users.

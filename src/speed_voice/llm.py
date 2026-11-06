@@ -7,7 +7,9 @@ import httpx
 class PhraseBuffer:
     """Flush short complete clauses early, then cap text waiting for punctuation."""
 
-    def __init__(self):
+    def __init__(self, first_limit=16, subsequent_limit=64):
+        self.first_limit = first_limit
+        self.subsequent_limit = subsequent_limit
         self.text = ""
         self.first = True
 
@@ -16,7 +18,7 @@ class PhraseBuffer:
         chunks = []
         while self.text:
             boundary = re.search(r"[.!?。！？]\s|[,;:]\s", self.text)
-            limit = 32 if self.first else 140
+            limit = self.first_limit if self.first else self.subsequent_limit
             cut = boundary.end() if boundary else 0
             if not cut and len(self.text) >= limit:
                 cut = self.text.rfind(" ", 0, limit + 1)
@@ -37,6 +39,20 @@ class LLM:
     def __init__(self, settings):
         self.settings = settings
         self.client = httpx.AsyncClient(timeout=httpx.Timeout(90, connect=5))
+
+    async def warm(self):
+        """Load the local Ollama model before accepting conversations, without generating text."""
+        base = self.settings.llm_url.rstrip("/")
+        if not self.settings.llm_warmup or base not in {
+            "http://127.0.0.1:11434/v1",
+            "http://localhost:11434/v1",
+        }:
+            return
+        response = await self.client.post(
+            base.removesuffix("/v1") + "/api/generate",
+            json={"model": self.settings.llm_model, "keep_alive": "5m"},
+        )
+        response.raise_for_status()
 
     async def close(self):
         await self.client.aclose()

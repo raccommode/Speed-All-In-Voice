@@ -216,7 +216,7 @@ async def test_first_audio_relative_to_llm_completion_without_punctuation(buffer
 
 
 def test_early_phrase_does_not_split_an_unfinished_word():
-    buffer = PhraseBuffer()
+    buffer = PhraseBuffer(32, 140)
     first = buffer.push("The capital of this beautiful coun")
     assert first == ["The capital of this beautiful"]
     rest = buffer.push("try is Paris.", final=True)
@@ -238,3 +238,150 @@ async def test_stream_end_is_not_mistaken_for_last_text_token():
     metrics = events[-1]["metrics"]
     assert metrics["audio_before_llm_done"]
     assert metrics["first_audio_ms"] > metrics["last_token_ms"]
+
+
+async def test_early_recognition_discards_resumed_speech_and_bounds_work():
+    from speed_voice.recognition import EarlyRecognition
+
+    started = threading.Event()
+    finish = threading.Event()
+    calls = []
+
+    class Recognizer:
+        def transcribe(self, audio):
+            calls.append(len(audio))
+            started.set()
+            finish.wait(1)
+            return "old transcript"
+
+    early = EarlyRecognition(Recognizer(), 64)
+    endpoint = Endpoint()
+    endpoint.frames = [np.ones(512, np.float32)] * 6
+    endpoint.voiced = 4
+    endpoint.silent = 2
+    early.observe(endpoint, False)
+    await asyncio.to_thread(started.wait, 1)
+    old = early.task
+    early.observe(endpoint, True)
+    early.observe(endpoint, False)
+    assert early.task is old
+    assert early.take() is None
+    finish.set()
+    await early.close()
+    assert len(calls) == 1
+
+
+async def test_valid_early_transcript_is_reused_only_at_committed_turn():
+    from speed_voice.recognition import EarlyRecognition
+
+    class Recognizer(Models):
+        def transcribe(self, audio):
+            return "Already recognized"
+
+    model = Recognizer()
+    early = EarlyRecognition(model, 64)
+    endpoint = Endpoint()
+    endpoint.frames = [np.zeros(512, np.float32)] * 6
+    endpoint.voiced = 4
+    endpoint.silent = 2
+    early.observe(endpoint, False)
+    await early.close()
+    events = []
+
+    async def emit(event):
+        events.append(event)
+
+    await respond(
+        model, Tokens(), Settings(), [], emit, 1, audio=np.zeros(512), transcription=early.take()
+    )
+    assert events[0]["text"] == "Already recognized"
+    assert events[-1]["metrics"]["early_stt_used"]
+    assert early.take() is None
+
+
+async def test_failed_early_recognition_falls_back_to_final_audio():
+    async def fail():
+        raise RuntimeError("speculative failure")
+
+    events = []
+
+    async def emit(event):
+        events.append(event)
+
+    await respond(
+        Models(),
+        Tokens(),
+        Settings(),
+        [],
+        emit,
+        1,
+        audio=np.zeros(512),
+        transcription=asyncio.create_task(fail()),
+    )
+    assert events[0]["text"] == "Hello"
+    assert not events[-1]["metrics"].get("early_stt_used")
+
+
+def test_resumed_speech_never_sends_early_transcript_to_llm():
+    first_attempt = threading.Event()
+    requests = []
+
+    class Recognizer(Models):
+        def transcribe(self, audio):
+            first_attempt.set()
+            return "complete thought" if np.max(audio) > 0.4 else "unfinished thought"
+
+    class Agent(Tokens):
+        async def tokens(self, messages):
+            requests.append(messages[-1]["content"])
+            async for token in super().tokens(messages):
+                yield token
+
+    def packet(voice, silent):
+        samples = np.concatenate([np.full(8 * 512, voice), np.zeros(silent * 512)])
+        return (samples * 32767).astype("<i2").tobytes()
+
+    with TestClient(create_app(Settings(), Recognizer(), Agent())) as client:
+        with client.websocket_connect("/v1/conversation") as ws:
+            ws.send_json({"token": ""})
+            assert ws.receive_json()["type"] == "ready"
+            ws.send_bytes(packet(0.2, 4))
+            assert ws.receive_json()["type"] == "speech_started"
+            assert first_attempt.wait(1)
+            assert requests == []
+            ws.send_bytes(packet(0.5, 10))
+            events = []
+            while not events or events[-1]["type"] != "done":
+                events.append(ws.receive_json())
+            assert (
+                next(e["text"] for e in events if e["type"] == "transcript") == "complete thought"
+            )
+            assert requests == ["complete thought"]
+
+
+async def test_ollama_warmup_loads_without_prompt_and_skips_other_providers():
+    from dataclasses import replace
+
+    import httpx
+
+    requests = []
+
+    def handler(request):
+        requests.append(request)
+        return httpx.Response(200, json={"done": True})
+
+    llm = LLM(Settings())
+    await llm.client.aclose()
+    llm.client = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+    await llm.warm()
+    import json
+
+    assert json.loads(requests[0].content) == {"model": "qwen2.5:1.5b", "keep_alive": "5m"}
+    assert requests[0].url.path == "/api/generate"
+    llm.settings = replace(Settings(), llm_url="https://example.com/v1")
+    await llm.warm()
+    assert len(requests) == 1
+    llm.settings = replace(Settings(), llm_warmup=0)
+    await llm.warm()
+    assert len(requests) == 1
+    await llm.close()

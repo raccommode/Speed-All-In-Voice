@@ -33,3 +33,7 @@ Use `examples/client.py` for a minimal text-to-voice client. The bundled browser
 To prove that speech starts before all response text is available, compare `first_audio_ms < last_token_ms`. The stream-end marker can arrive after the final text token, so `audio_before_llm_done` alone is insufficient for that stronger claim.
 
 These are server generation times, not acoustic playback timestamps. A very short answer from a fast LLM can finish before the TTS produces its first chunk even with streaming enabled. No filler or prerecorded acknowledgement is counted as a response.
+
+## Overlapped recognition
+
+When `early_stt_used` is true, recognition started before the committed turn, during endpoint silence. `stt_ms` measures only the remaining wait after commitment, not the complete recognizer computation. Resumed speech invalidates the early hypothesis. Failed early recognition falls back to the complete committed audio. No speculative transcript or LLM request is emitted before the endpoint is confirmed.

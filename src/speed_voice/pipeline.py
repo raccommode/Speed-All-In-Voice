@@ -56,7 +56,17 @@ async def audio_stream(models, text, stop):
 
 
 async def respond(
-    models, llm, settings, history, emit, turn_id, audio=None, text=None, *, buffered_speech=False
+    models,
+    llm,
+    settings,
+    history,
+    emit,
+    turn_id,
+    audio=None,
+    text=None,
+    *,
+    buffered_speech=False,
+    transcription=None,
 ):
     start = time.perf_counter()
     stop = threading.Event()
@@ -65,7 +75,14 @@ async def respond(
     transcript = text
     try:
         if transcript is None:
-            transcript = await asyncio.to_thread(models.transcribe, audio)
+            if transcription is not None:
+                try:
+                    transcript = await asyncio.shield(transcription)
+                    metrics["early_stt_used"] = True
+                except Exception:  # An early attempt must not prevent fresh recognition.
+                    transcript = await asyncio.to_thread(models.transcribe, audio)
+            else:
+                transcript = await asyncio.to_thread(models.transcribe, audio)
         metrics["stt_ms"] = (time.perf_counter() - start) * 1000
         await emit({"type": "transcript", "turn_id": turn_id, "text": transcript})
         if not transcript:
@@ -79,7 +96,7 @@ async def respond(
         answer = []
 
         async def generate():
-            buffer = PhraseBuffer()
+            buffer = PhraseBuffer(settings.first_phrase_chars, settings.phrase_chars)
             async for token in llm.tokens(messages):
                 metrics.setdefault("first_token_ms", (time.perf_counter() - start) * 1000)
                 metrics["last_token_ms"] = (time.perf_counter() - start) * 1000

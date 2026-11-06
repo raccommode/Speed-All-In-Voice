@@ -16,7 +16,11 @@ class Settings:
     llm_url: str = "http://127.0.0.1:11434/v1"
     llm_model: str = "qwen2.5:1.5b"
     llm_key: str = "ollama"
+    llm_warmup: int = 1
     token: str = ""
+    first_phrase_chars: int = 16
+    phrase_chars: int = 64
+    early_stt_ms: int = 128
     silence_ms: int = 320
     max_turn_seconds: int = 30
     max_reply_tokens: int = 160
@@ -36,8 +40,12 @@ class Settings:
         result = cls(**values)
         if result.backend not in {"mlx", "cuda", "cpu"}:
             raise ValueError("SPEED_BACKEND must be mlx, cuda, or cpu")
+        if result.early_stt_ms < 0 or result.early_stt_ms >= result.silence_ms:
+            raise ValueError("SPEED_EARLY_STT_MS must be zero or less than endpoint silence")
         if not 160 <= result.silence_ms <= 2000:
             raise ValueError("SPEED_SILENCE_MS must be between 160 and 2000")
+        if not 8 <= result.first_phrase_chars <= result.phrase_chars <= 512:
+            raise ValueError("Phrase limits must satisfy 8 <= first <= subsequent <= 512")
         if result.tts_device not in {"cpu", "cuda"}:
             raise ValueError("SPEED_TTS_DEVICE must be cpu or cuda")
         return result
