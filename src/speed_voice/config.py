@@ -37,6 +37,12 @@ class Settings:
             raw = os.getenv("SPEED_" + name.upper())
             if raw is not None:
                 values[name] = int(raw) if isinstance(getattr(defaults, name), int) else raw
+        url = values.get("llm_url", defaults.llm_url).rstrip("/")
+        if url == "https://openrouter.ai/api/v1" and "llm_key" not in values:
+            key = os.getenv("OPENROUTER_API_KEY")
+            if not key:
+                raise ValueError("Set OPENROUTER_API_KEY or SPEED_LLM_KEY for OpenRouter")
+            values["llm_key"] = key
         result = cls(**values)
         if result.backend not in {"mlx", "cuda", "cpu"}:
             raise ValueError("SPEED_BACKEND must be mlx, cuda, or cpu")

@@ -44,6 +44,10 @@ Ollama must already be running (`ollama serve` if needed). Any installed chat mo
 
 For another OpenAI-compatible server, set `SPEED_LLM_URL`, `SPEED_LLM_MODEL`, and optionally `SPEED_LLM_KEY`. Hermes/OpenClaw require an adapter that exposes streaming chat completions; this release does not claim a native agent integration. See [protocol](docs/protocol.md).
 
+## OpenRouter and small/large model routing
+
+OpenRouter works through the same streaming interface. The [measured small-versus-large comparison](benchmarks/OPENROUTER.md) includes direct calls and sequential delegation, costs, and configuration commands. The local `.env` is never committed. Sequential delegation is an experiment, not the default routing policy.
+
 ## Languages and voice cloning
 
 Run one language profile per worker. Switching profiles requires restarting that worker; this release does not auto-switch TTS models mid-conversation.

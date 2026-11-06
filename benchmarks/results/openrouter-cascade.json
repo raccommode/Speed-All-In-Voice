@@ -1,0 +1,1050 @@
+{
+  "date_utc": "2026-11-06T20:16:23.148041+00:00",
+  "hardware": "Mac mini M4, 16 GB; local French Pocket TTS CPU",
+  "small": "google/gemini-2.5-flash-lite",
+  "large": "anthropic/claude-sonnet-4.6",
+  "router_prompt": "You are the fast front end of a voice assistant. For a simple factual question or a single arithmetic operation, respond with ANSWER on its own first line, then give the actual short answer in the user's language. For multi-step reasoning, complex constraints, uncertainty, or anything you cannot confidently answer, output only DELEGATE. Never provide filler, a preamble, or explain the routing. Do not answer the complex question yourself. Routing markers are not spoken.",
+  "system_prompt": "You are a helpful voice assistant. Reply in the user's language. Use one or two short spoken sentences. No markdown, lists, or hidden reasoning.",
+  "prompts": {
+    "fact": "Quelle est la capitale de la France ? R\u00e9ponds bri\u00e8vement.",
+    "arithmetic": "Combien font dix-sept plus vingt-cinq ? R\u00e9ponds bri\u00e8vement.",
+    "reasoning": "Quel est le plus petit entier positif qui donne un reste de deux quand on le divise par trois, un reste de trois quand on le divise par cinq et un reste de deux quand on le divise par sept ? Donne le r\u00e9sultat et une courte v\u00e9rification."
+  },
+  "max_tokens_per_call": 128,
+  "temperature": 0,
+  "measurement": "Committed synthetic text to first generated speech. Includes WAN and routing; excludes STT, endpointing and acoustic playback. No prerecorded acknowledgement.",
+  "runs": [
+    {
+      "case": "fact",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.38308301009237766,
+      "first_token_ms": 1037.793750059791,
+      "last_token_ms": 1037.7945411019027,
+      "first_audio_ms": 1086.260291049257,
+      "llm_stream_done_ms": 1097.355458070524,
+      "total_ms": 1529.6733330469579,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 11.095167021267116,
+      "reply": "La capitale de la France est Paris.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 56,
+            "completion_tokens": 11,
+            "total_tokens": 67,
+            "cost": 0.000333,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.000333,
+              "upstream_inference_prompt_cost": 0.000168,
+              "upstream_inference_completions_cost": 0.000165
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996183-pYgSEZqPIhbgYytaIWMg",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 1036.9567919988185,
+          "total_ms": 1096.5180419152603
+        }
+      ],
+      "cost_usd": 0.000333
+    },
+    {
+      "case": "fact",
+      "repeat": 1,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.019165920093655586,
+      "first_token_ms": 457.9327499959618,
+      "last_token_ms": 466.57512499950826,
+      "llm_stream_done_ms": 481.9702079985291,
+      "first_audio_ms": 512.7304579364136,
+      "total_ms": 914.3594999331981,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -30.76024993788451,
+      "reply": "La capitale de la France est Paris.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 47,
+            "completion_tokens": 8,
+            "total_tokens": 55,
+            "cost": 7.9e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 7.9e-06,
+              "upstream_inference_prompt_cost": 4.7e-06,
+              "upstream_inference_completions_cost": 3.2e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996184-6UJDa9dWaH61LdWNWG3A",
+          "provider": "Google AI Studio",
+          "first_token_ms": 457.85295800305903,
+          "total_ms": 481.884540989995
+        }
+      ],
+      "cost_usd": 7.9e-06
+    },
+    {
+      "case": "fact",
+      "repeat": 1,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.006499933078885078,
+      "first_token_ms": 463.48045801278204,
+      "last_token_ms": 463.4809580165893,
+      "llm_stream_done_ms": 478.25670801103115,
+      "first_audio_ms": 542.9659580113366,
+      "total_ms": 653.4016659716144,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -64.70925000030547,
+      "reply": "Paris",
+      "route": "small",
+      "route_ms": 427.73333308286965,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 109,
+            "completion_tokens": 2,
+            "total_tokens": 111,
+            "cost": 1.17e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.17e-05,
+              "upstream_inference_prompt_cost": 1.09e-05,
+              "upstream_inference_completions_cost": 8e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996185-UgTP4liOy5V8yDXJGOaA",
+          "provider": "Google AI Studio",
+          "first_token_ms": 427.72399995010346,
+          "total_ms": 478.2138329464942
+        }
+      ],
+      "cost_usd": 1.17e-05
+    },
+    {
+      "case": "fact",
+      "repeat": 2,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.0074999406933784485,
+      "first_token_ms": 434.8609159933403,
+      "last_token_ms": 439.09416592214257,
+      "first_audio_ms": 469.89599999506027,
+      "llm_stream_done_ms": 471.54624992981553,
+      "total_ms": 891.4337080204859,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 1.6502499347552657,
+      "reply": "La capitale de la France est Paris.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 47,
+            "completion_tokens": 8,
+            "total_tokens": 55,
+            "cost": 7.9e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 7.9e-06,
+              "upstream_inference_prompt_cost": 4.7e-06,
+              "upstream_inference_completions_cost": 3.2e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996186-SqCh0tRPMOimWjwVqmyu",
+          "provider": "Google AI Studio",
+          "first_token_ms": 434.82162500731647,
+          "total_ms": 471.5044579934329
+        }
+      ],
+      "cost_usd": 7.9e-06
+    },
+    {
+      "case": "fact",
+      "repeat": 2,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.006791087798774242,
+      "first_token_ms": 443.1296660332009,
+      "last_token_ms": 443.12983308918774,
+      "llm_stream_done_ms": 471.527916030027,
+      "first_audio_ms": 509.7340000793338,
+      "total_ms": 621.2549580959603,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -38.20608404930681,
+      "reply": "Paris",
+      "route": "small",
+      "route_ms": 421.4375000447035,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 109,
+            "completion_tokens": 2,
+            "total_tokens": 111,
+            "cost": 1.17e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.17e-05,
+              "upstream_inference_prompt_cost": 1.09e-05,
+              "upstream_inference_completions_cost": 8e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996187-D5ocsqY1BcpZVCBDKRsE",
+          "provider": "Google AI Studio",
+          "first_token_ms": 421.4339590398595,
+          "total_ms": 471.4847089489922
+        }
+      ],
+      "cost_usd": 1.17e-05
+    },
+    {
+      "case": "fact",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006624963134527206,
+      "first_token_ms": 725.2860419685021,
+      "last_token_ms": 725.286667002365,
+      "llm_stream_done_ms": 758.3132080035284,
+      "first_audio_ms": 769.3052079994231,
+      "total_ms": 1224.6178750647232,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -10.99199999589473,
+      "reply": "La capitale de la France est Paris.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 56,
+            "completion_tokens": 11,
+            "total_tokens": 67,
+            "cost": 0.000333,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.000333,
+              "upstream_inference_prompt_cost": 0.000168,
+              "upstream_inference_completions_cost": 0.000165
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996187-vi4V16X6cZh3oJbDEqlA",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 725.2495839493349,
+          "total_ms": 758.2757089985535
+        }
+      ],
+      "cost_usd": 0.000333
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006292015314102173,
+      "first_token_ms": 639.795208000578,
+      "last_token_ms": 910.632541985251,
+      "first_audio_ms": 803.9094170089811,
+      "llm_stream_done_ms": 930.5499580223113,
+      "total_ms": 1254.6440419973806,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 126.64054101333022,
+      "reply": "Dix-sept plus vingt-cinq font quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 61,
+            "completion_tokens": 20,
+            "total_tokens": 81,
+            "cost": 0.000483,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.000483,
+              "upstream_inference_prompt_cost": 0.000183,
+              "upstream_inference_completions_cost": 0.0003
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996189-4NyUhoOrQc1DAFlkcIuJ",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 639.7548749810085,
+          "total_ms": 930.5081659695134
+        }
+      ],
+      "cost_usd": 0.000483
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 1,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.0062909675762057304,
+      "first_token_ms": 436.69724999926984,
+      "last_token_ms": 463.99516600649804,
+      "llm_stream_done_ms": 476.4345830772072,
+      "first_audio_ms": 485.39666598662734,
+      "total_ms": 928.3909159712493,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -8.962082909420133,
+      "reply": "Dix-sept plus vingt-cinq font quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 14,
+            "total_tokens": 65,
+            "cost": 1.07e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.07e-05,
+              "upstream_inference_prompt_cost": 5.1e-06,
+              "upstream_inference_completions_cost": 5.6e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996190-XQBXn01MV6nYv3gHZs6u",
+          "provider": "Google AI Studio",
+          "first_token_ms": 436.65575003251433,
+          "total_ms": 476.3914999784902
+        }
+      ],
+      "cost_usd": 1.07e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 1,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.0061659375205636024,
+      "first_token_ms": 427.3688750108704,
+      "last_token_ms": 427.36937501467764,
+      "llm_stream_done_ms": 455.5363330291584,
+      "first_audio_ms": 502.02354101929814,
+      "total_ms": 673.5116660129279,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -46.48720799013972,
+      "reply": "42",
+      "route": "small",
+      "route_ms": 427.33316705562174,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 113,
+            "completion_tokens": 4,
+            "total_tokens": 117,
+            "cost": 1.29e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.29e-05,
+              "upstream_inference_prompt_cost": 1.13e-05,
+              "upstream_inference_completions_cost": 1.6e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996191-i4o6FRcWg30YnYCgatDY",
+          "provider": "Google AI Studio",
+          "first_token_ms": 427.3288749391213,
+          "total_ms": 455.49354201648384
+        }
+      ],
+      "cost_usd": 1.29e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 2,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.006417045369744301,
+      "first_token_ms": 427.801875048317,
+      "last_token_ms": 457.8264590818435,
+      "llm_stream_done_ms": 466.64329210761935,
+      "first_audio_ms": 472.38733409903944,
+      "total_ms": 867.3521670280024,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -5.74404199142009,
+      "reply": "Dix-sept plus vingt-cinq font quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 14,
+            "total_tokens": 65,
+            "cost": 1.07e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.07e-05,
+              "upstream_inference_prompt_cost": 5.1e-06,
+              "upstream_inference_completions_cost": 5.6e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996191-IH5tB5CTy52p4EV423lf",
+          "provider": "Google AI Studio",
+          "first_token_ms": 427.7611250290647,
+          "total_ms": 466.60112508106977
+        }
+      ],
+      "cost_usd": 1.07e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 2,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.0074160052463412285,
+      "first_token_ms": 473.4605409903452,
+      "last_token_ms": 473.46079105045646,
+      "llm_stream_done_ms": 479.14199996739626,
+      "first_audio_ms": 513.9212500071153,
+      "total_ms": 680.4683329537511,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -34.779250039719045,
+      "reply": "42",
+      "route": "small",
+      "route_ms": 473.4094999730587,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 113,
+            "completion_tokens": 4,
+            "total_tokens": 117,
+            "cost": 1.29e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.29e-05,
+              "upstream_inference_prompt_cost": 1.13e-05,
+              "upstream_inference_completions_cost": 1.6e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996192-XfumSAusi6zTCQ1FLADz",
+          "provider": "Google AI Studio",
+          "first_token_ms": 473.40662498027086,
+          "total_ms": 479.0859160711989
+        }
+      ],
+      "cost_usd": 1.29e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006375019438564777,
+      "first_token_ms": 703.8180420640856,
+      "last_token_ms": 969.5692081004381,
+      "first_audio_ms": 870.7687080604956,
+      "llm_stream_done_ms": 982.1317500900477,
+      "total_ms": 1282.5965830124915,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 111.36304202955216,
+      "reply": "Dix-sept plus vingt-cinq font quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 61,
+            "completion_tokens": 20,
+            "total_tokens": 81,
+            "cost": 0.000483,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.000483,
+              "upstream_inference_prompt_cost": 0.000183,
+              "upstream_inference_completions_cost": 0.0003
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996193-JGknWe61ulSkQxoAdiwB",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 703.7789170863107,
+          "total_ms": 982.0895830634981
+        }
+      ],
+      "cost_usd": 0.000483
+    },
+    {
+      "case": "reasoning",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006416928954422474,
+      "first_token_ms": 646.1054169340059,
+      "last_token_ms": 1572.311291936785,
+      "first_audio_ms": 1055.0223749596626,
+      "llm_stream_done_ms": 2074.65720793698,
+      "total_ms": 3092.8092079702765,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 1019.6348329773173,
+      "reply": "Le plus petit entier positif est 23. V\u00e9rifions : 23 divis\u00e9 par 3 donne 7 reste 2, divis\u00e9 par 5 donne 4 reste 3, et divis\u00e9 par 7 donne 3 reste 2.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 108,
+            "completion_tokens": 68,
+            "total_tokens": 176,
+            "cost": 0.001344,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.001344,
+              "upstream_inference_prompt_cost": 0.000324,
+              "upstream_inference_completions_cost": 0.00102
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996194-HA8yCdOzHxexooRUDxTH",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 646.0685420315713,
+          "total_ms": 2074.616707977839
+        }
+      ],
+      "cost_usd": 0.001344
+    },
+    {
+      "case": "reasoning",
+      "repeat": 1,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.005541020072996616,
+      "first_token_ms": 444.99291596002877,
+      "last_token_ms": 614.1557500232011,
+      "first_audio_ms": 534.9204159574583,
+      "llm_stream_done_ms": 625.0737080117688,
+      "total_ms": 2604.0084999985993,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 90.15329205431044,
+      "reply": "Le plus petit entier positif est 23.\n\nV\u00e9rification : 23 divis\u00e9 par 3 donne 7 avec un reste de 2. 23 divis\u00e9 par 5 donne 4 avec un reste de 3. 23 divis\u00e9 par 7 donne 3 avec un reste de 2.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 85,
+            "completion_tokens": 69,
+            "total_tokens": 154,
+            "cost": 3.61e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.61e-05,
+              "upstream_inference_prompt_cost": 8.5e-06,
+              "upstream_inference_completions_cost": 2.76e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996197-7mmXKVGZCn8Y0twLGAzt",
+          "provider": "Google AI Studio",
+          "first_token_ms": 444.9558329069987,
+          "total_ms": 625.0359999248758
+        }
+      ],
+      "cost_usd": 3.61e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 1,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.006375019438564777,
+      "first_token_ms": 1074.8640829697251,
+      "last_token_ms": 1998.938333010301,
+      "first_audio_ms": 1459.998624981381,
+      "llm_stream_done_ms": 2052.014583023265,
+      "total_ms": 3263.5813750093803,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 592.015958041884,
+      "reply": "Le plus petit entier positif est 23. V\u00e9rifions : 23 divis\u00e9 par 3 donne 7 reste 2, divis\u00e9 par 5 donne 4 reste 3, et divis\u00e9 par 7 donne 3 reste 2.",
+      "route": "large",
+      "route_ms": 456.97170903440565,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 147,
+            "completion_tokens": 3,
+            "total_tokens": 150,
+            "cost": 1.59e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.59e-05,
+              "upstream_inference_prompt_cost": 1.47e-05,
+              "upstream_inference_completions_cost": 1.2e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996200-8aCwZIQ0AKeK81lFBpNP",
+          "provider": "Google AI Studio",
+          "first_token_ms": 437.08362500183284,
+          "total_ms": 456.967500038445
+        },
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 108,
+            "completion_tokens": 68,
+            "total_tokens": 176,
+            "cost": 0.001344,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.001344,
+              "upstream_inference_prompt_cost": 0.000324,
+              "upstream_inference_completions_cost": 0.00102
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996200-sGUAk1ZA6sfs2IfXQ38D",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 617.8510839818045,
+          "total_ms": 1594.999041990377
+        }
+      ],
+      "cost_usd": 0.0013598999999999998
+    },
+    {
+      "case": "reasoning",
+      "repeat": 2,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.006082933396100998,
+      "first_token_ms": 520.8369169849902,
+      "last_token_ms": 726.2544999830425,
+      "first_audio_ms": 628.1830000225455,
+      "llm_stream_done_ms": 746.4341250015423,
+      "total_ms": 3122.8347499854863,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 118.25112497899681,
+      "reply": "Le plus petit entier positif est 23.\n\nV\u00e9rification : 23 divis\u00e9 par 3 donne 7 avec un reste de 2. 23 divis\u00e9 par 5 donne 4 avec un reste de 3. 23 divis\u00e9 par 7 donne 3 avec un reste de 2.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 85,
+            "completion_tokens": 69,
+            "total_tokens": 154,
+            "cost": 3.61e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.61e-05,
+              "upstream_inference_prompt_cost": 8.5e-06,
+              "upstream_inference_completions_cost": 2.76e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996203-LwQDKLAwsTJ373CwtKtr",
+          "provider": "Google AI Studio",
+          "first_token_ms": 520.7976660458371,
+          "total_ms": 746.394915971905
+        }
+      ],
+      "cost_usd": 3.61e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 2,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.0070410314947366714,
+      "first_token_ms": 1204.0044580353424,
+      "last_token_ms": 2319.99274995178,
+      "first_audio_ms": 1597.6509159663692,
+      "llm_stream_done_ms": 2338.7301659677178,
+      "total_ms": 3674.30662503466,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 741.0792500013486,
+      "reply": "Le plus petit entier positif est 23. V\u00e9rifions : 23 divis\u00e9 par 3 donne 7 reste 2, divis\u00e9 par 5 donne 4 reste 3, et divis\u00e9 par 7 donne 3 reste 2, c'est bien correct.",
+      "route": "large",
+      "route_ms": 454.7234160127118,
+      "calls": [
+        {
+          "model": "google/gemini-2.5-flash-lite",
+          "usage": {
+            "prompt_tokens": 147,
+            "completion_tokens": 3,
+            "total_tokens": 150,
+            "cost": 1.59e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.59e-05,
+              "upstream_inference_prompt_cost": 1.47e-05,
+              "upstream_inference_completions_cost": 1.2e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996206-M7Hgu85Pr9XOz1fXkhFL",
+          "provider": "Google AI Studio",
+          "first_token_ms": 442.586624994874,
+          "total_ms": 454.7149169957265
+        },
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 108,
+            "completion_tokens": 74,
+            "total_tokens": 182,
+            "cost": 0.001434,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.001434,
+              "upstream_inference_prompt_cost": 0.000324,
+              "upstream_inference_completions_cost": 0.00111
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996207-ZjH6WEhJ62cl3AZ02ZnV",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 749.2353749694303,
+          "total_ms": 1883.9572080178186
+        }
+      ],
+      "cost_usd": 0.0014498999999999998
+    },
+    {
+      "case": "reasoning",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.0071249669417738914,
+      "first_token_ms": 642.5834579858929,
+      "last_token_ms": 1764.2372909467667,
+      "first_audio_ms": 1033.1546659581363,
+      "llm_stream_done_ms": 1776.9211659906432,
+      "total_ms": 3178.395540919155,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 743.7665000325069,
+      "reply": "Le plus petit entier positif est 23. V\u00e9rifions : 23 divis\u00e9 par 3 donne 7 reste 2, divis\u00e9 par 5 donne 4 reste 3, et divis\u00e9 par 7 donne 3 reste 2, c'est bien correct.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "anthropic/claude-sonnet-4.6",
+          "usage": {
+            "prompt_tokens": 108,
+            "completion_tokens": 74,
+            "total_tokens": 182,
+            "cost": 0.001434,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 0.001434,
+              "upstream_inference_prompt_cost": 0.000324,
+              "upstream_inference_completions_cost": 0.00111
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996210-g3GEy6PNJRG3Fra3FNlm",
+          "provider": "Claude Platform on AWS",
+          "first_token_ms": 642.5375000108033,
+          "total_ms": 1776.873708004132
+        }
+      ],
+      "cost_usd": 0.001434
+    }
+  ],
+  "summary": {
+    "fact": {
+      "large": {
+        "first_audio_p50_ms": 927.78274952434,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "small": {
+        "first_audio_p50_ms": 491.3132289657369,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "routed": {
+        "first_audio_p50_ms": 526.3499790453352,
+        "routes": [
+          "small",
+          "small"
+        ]
+      }
+    },
+    "arithmetic": {
+      "large": {
+        "first_audio_p50_ms": 837.3390625347383,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "small": {
+        "first_audio_p50_ms": 478.8920000428334,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "routed": {
+        "first_audio_p50_ms": 507.9723955132067,
+        "routes": [
+          "small",
+          "small"
+        ]
+      }
+    },
+    "reasoning": {
+      "large": {
+        "first_audio_p50_ms": 1044.0885204588994,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "small": {
+        "first_audio_p50_ms": 581.5517079900019,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "routed": {
+        "first_audio_p50_ms": 1528.824770473875,
+        "routes": [
+          "large",
+          "large"
+        ]
+      }
+    }
+  },
+  "total_cost_usd": 0.007378399999999999
+}
