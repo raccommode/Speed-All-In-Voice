@@ -29,3 +29,7 @@ The lockfile records transitive dependencies. Some binary packages include addit
 Other upstream voices can have noncommercial restrictions (notably Expresso and EARS). Do not assume that every voice listed by a TTS library is permissively licensed. Only the two examples above were selected for this release. For custom recordings, obtain permission for cloning and follow the recording's license. Use local files in trusted operator configuration; never publish private recordings or Hugging Face tokens.
 
 License links were reviewed on 2026-11-06. A different model revision or voice requires its own review. This is an attribution inventory, not a claim that model weights are OSI-licensed software.
+
+## Additional open-model benchmark candidates
+
+The 16 GiB shortlist benchmarks [Ministral 3 3B](https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512), [8B](https://huggingface.co/mistralai/Ministral-3-8B-Instruct-2512), [14B](https://huggingface.co/mistralai/Ministral-3-14B-Instruct-2512), and [Qwen3.5 9B](https://huggingface.co/Qwen/Qwen3.5-9B). Each linked model card identifies Apache 2.0. No weights or quantized conversions are redistributed. Preserve the original license and notices when downloading or redistributing a local checkpoint; quantization does not replace the original license. OpenRouter inference timings do not certify local GPU memory or performance.

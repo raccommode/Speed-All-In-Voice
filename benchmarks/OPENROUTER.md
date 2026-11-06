@@ -1,5 +1,7 @@
 # OpenRouter: small model, large model, and sequential routing
 
+Historical closed-model comparison. Current experiments default to [open models suitable for a 16 GiB shortlist](OPEN_MODELS_16GB.md).
+
 Measured on 2026-11-06 using a Mac mini M4 with 16 GB and local French Pocket TTS. Only synthetic text prompts were sent to OpenRouter; microphone audio and voice references remained local.
 
 - Small model: `google/gemini-2.5-flash-lite` (observed provider: Google AI Studio).

@@ -1,0 +1,352 @@
+{
+  "date_utc": "2026-11-06T20:23:57.144107+00:00",
+  "hardware": "Mac mini M4, 16 GB; local French Pocket TTS CPU",
+  "small": "mistralai/ministral-3b-2512",
+  "large": "qwen/qwen3.5-9b",
+  "router_prompt": "You are the fast front end of a voice assistant. For a simple factual question or a single arithmetic operation, respond with ANSWER on its own first line, then give the actual short answer in the user's language. For multi-step reasoning, complex constraints, uncertainty, or anything you cannot confidently answer, output only DELEGATE. Never provide filler, a preamble, or explain the routing. Do not answer the complex question yourself. Routing markers are not spoken.",
+  "system_prompt": "You are a helpful voice assistant. Reply in the user's language. Use one or two short spoken sentences. No markdown, lists, or hidden reasoning.",
+  "prompts": {
+    "fact": "Quelle est la capitale de la France ? R\u00e9ponds bri\u00e8vement.",
+    "arithmetic": "Combien font dix-sept plus vingt-cinq ? R\u00e9ponds bri\u00e8vement.",
+    "reasoning": "Quel est le plus petit entier positif qui donne un reste de deux quand on le divise par trois, un reste de trois quand on le divise par cinq et un reste de deux quand on le divise par sept ? Donne le r\u00e9sultat et une courte v\u00e9rification."
+  },
+  "modes": [
+    "large"
+  ],
+  "max_tokens_per_call": 128,
+  "temperature": 0,
+  "reasoning_disabled_requested": true,
+  "measurement": "Committed synthetic text to first generated speech. Includes WAN and routing; excludes STT, endpointing and acoustic playback. No prerecorded acknowledgement.",
+  "runs": [
+    {
+      "case": "fact",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.03020802978426218,
+      "first_token_ms": 462.374750059098,
+      "last_token_ms": 535.2099160663784,
+      "first_audio_ms": 581.1079579871148,
+      "llm_stream_done_ms": 601.7353750066832,
+      "total_ms": 1062.552041024901,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 20.627417019568384,
+      "reply": "La capitale de la France est Paris.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "qwen/qwen3.5-9b",
+          "usage": {
+            "prompt_tokens": 62,
+            "completion_tokens": 9,
+            "total_tokens": 71,
+            "cost": 6.13e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 6.13e-06,
+              "upstream_inference_prompt_cost": 4.96e-06,
+              "upstream_inference_completions_cost": 1.17e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996637-A4BB5hiCsqAo4L3k53fl",
+          "provider": "Darkbloom",
+          "first_token_ms": 462.25612494163215,
+          "total_ms": 601.6142079606652
+        }
+      ],
+      "cost_usd": 6.13e-06
+    },
+    {
+      "case": "fact",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.0069999368861317635,
+      "first_token_ms": 468.78708293661475,
+      "last_token_ms": 557.6377079123631,
+      "llm_stream_done_ms": 562.0284579927102,
+      "first_audio_ms": 583.5229998920113,
+      "total_ms": 1131.218040944077,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -21.49454189930111,
+      "reply": "La capitale de la France est Paris.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "qwen/qwen3.5-9b",
+          "usage": {
+            "prompt_tokens": 62,
+            "completion_tokens": 9,
+            "total_tokens": 71,
+            "cost": 8.45e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 8.45e-06,
+              "upstream_inference_prompt_cost": 6.2e-06,
+              "upstream_inference_completions_cost": 2.25e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996638-QjfGxctBSMGy3TxMYnPF",
+          "provider": "Parasail",
+          "first_token_ms": 468.73945801053196,
+          "total_ms": 561.975207994692
+        }
+      ],
+      "cost_usd": 8.45e-06
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.015625031664967537,
+      "first_token_ms": 801.4254589797929,
+      "last_token_ms": 911.7578340228647,
+      "first_audio_ms": 909.0272090397775,
+      "llm_stream_done_ms": 949.7727920534089,
+      "total_ms": 1492.7024589851499,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 40.7455830136314,
+      "reply": "Dix-sept plus vingt-cinq font quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "qwen/qwen3.5-9b",
+          "usage": {
+            "prompt_tokens": 65,
+            "completion_tokens": 15,
+            "total_tokens": 80,
+            "cost": 8.085e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 8.085e-06,
+              "upstream_inference_prompt_cost": 6.045e-06,
+              "upstream_inference_completions_cost": 2.04e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996639-u9qZeCqNSEobPfNcT7C7",
+          "provider": "PrimeIntellect",
+          "first_token_ms": 801.3593329815194,
+          "total_ms": 949.7041249414906
+        }
+      ],
+      "cost_usd": 8.085e-06
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.0071249669417738914,
+      "first_token_ms": 511.7401659954339,
+      "last_token_ms": 599.8527079354972,
+      "llm_stream_done_ms": 604.6168329194188,
+      "first_audio_ms": 617.0013749506325,
+      "total_ms": 1248.1209159595892,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -12.384542031213641,
+      "reply": "Dix-sept plus vingt-cinq font quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "qwen/qwen3.5-9b",
+          "usage": {
+            "prompt_tokens": 65,
+            "completion_tokens": 15,
+            "total_tokens": 80,
+            "cost": 1.48e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.48e-05,
+              "upstream_inference_prompt_cost": 1.105e-05,
+              "upstream_inference_completions_cost": 3.75e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996640-wYJLpTPpKDu6k9b4dPdV",
+          "provider": "Together",
+          "first_token_ms": 511.6985000204295,
+          "total_ms": 604.5743329450488
+        }
+      ],
+      "cost_usd": 1.48e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006500049494206905,
+      "first_token_ms": 311.2125840270892,
+      "last_token_ms": 2636.766375042498,
+      "first_audio_ms": 425.1561670098454,
+      "llm_stream_done_ms": 2695.005959016271,
+      "total_ms": 3485.672250040807,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 2269.8497920064256,
+      "reply": "Le plus petit entier positif est 23. V\u00e9rification : 23 donne un reste de 2 sur 3, un reste de 3 sur 5 et un reste de 2 sur 7.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "qwen/qwen3.5-9b",
+          "usage": {
+            "prompt_tokens": 103,
+            "completion_tokens": 45,
+            "total_tokens": 148,
+            "cost": 1.5699e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.5699e-05,
+              "upstream_inference_prompt_cost": 9.579e-06,
+              "upstream_inference_completions_cost": 6.12e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996642-ODIqyi7Zvyw6n5BcikmE",
+          "provider": "PrimeIntellect",
+          "first_token_ms": 311.15729198791087,
+          "total_ms": 2694.9613749748096
+        }
+      ],
+      "cost_usd": 1.5699e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006792019121348858,
+      "first_token_ms": 1174.5240000309423,
+      "last_token_ms": 3378.262792015448,
+      "first_audio_ms": 1339.338458958082,
+      "llm_stream_done_ms": 3416.730958968401,
+      "total_ms": 4049.8022499959916,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 2077.392500010319,
+      "reply": "Le plus petit entier positif est 23. V\u00e9rification : 23 donne un reste de 2 sur 3, un reste de 3 sur 5 et un reste de 2 sur 7.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "qwen/qwen3.5-9b",
+          "usage": {
+            "prompt_tokens": 103,
+            "completion_tokens": 44,
+            "total_tokens": 147,
+            "cost": 1.69e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.69e-05,
+              "upstream_inference_prompt_cost": 1.03e-05,
+              "upstream_inference_completions_cost": 6.6e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996645-q120zGiCVDpG0Q0wQ8Gr",
+          "provider": "SiliconFlow",
+          "first_token_ms": 1174.4790410157293,
+          "total_ms": 3416.6807080619037
+        }
+      ],
+      "cost_usd": 1.69e-05
+    }
+  ],
+  "summary": {
+    "fact": {
+      "large": {
+        "first_audio_p50_ms": 582.315478939563,
+        "routes": [
+          null,
+          null
+        ]
+      }
+    },
+    "arithmetic": {
+      "large": {
+        "first_audio_p50_ms": 763.014291995205,
+        "routes": [
+          null,
+          null
+        ]
+      }
+    },
+    "reasoning": {
+      "large": {
+        "first_audio_p50_ms": 882.2473129839636,
+        "routes": [
+          null,
+          null
+        ]
+      }
+    }
+  },
+  "total_cost_usd": 7.0064e-05
+}

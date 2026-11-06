@@ -8,6 +8,8 @@ The [latest latency tuning](LATENCY_TUNING.md) compares the prior scheduling pol
 
 The [OpenRouter experiment](OPENROUTER.md) compares Gemini Flash-Lite, Claude Sonnet, and sequential small-to-large delegation, including actual API costs.
 
+The current [open-model shortlist for 16 GiB](OPEN_MODELS_16GB.md) reports Apache-2.0 models only, including observed errors and separate local-memory estimates.
+
 ## Mac mini M4 — 16 GB unified memory
 
 10-core CPU (4 performance + 6 efficiency), MLX Whisper small, Pocket TTS 4.0.1 on two CPU threads, two sampler steps, local Ollama `qwen2.5:1.5b`. Ten warm runs per row. The LLM responds to a short capital-city question with a short sentence.

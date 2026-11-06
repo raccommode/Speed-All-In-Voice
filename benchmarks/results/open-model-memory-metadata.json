@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-06",
+  "method": "Published GGUF file sizes from repository API, not observed VRAM. Ministral dense FP16 KV estimate: 2 * layers * KV heads * head dimension * 4096 tokens * 2 bytes. Excludes runtime workspaces, other models, vision, and concurrency.",
+  "models": [
+    {
+      "model": "Ministral 3 3B",
+      "license": "Apache-2.0",
+      "repo": "mistralai/Ministral-3-3B-Instruct-2512-GGUF",
+      "revision": "eb599d408350ea2bb60452cb86be7c7b2fc28227",
+      "file": "Ministral-3-3B-Instruct-2512-Q4_K_M.gguf",
+      "file_bytes": 2147023008,
+      "file_gib": 1.9995709955692291,
+      "fp16_kv_4096_single_sequence_gib": 0.40625
+    },
+    {
+      "model": "Ministral 3 8B",
+      "license": "Apache-2.0",
+      "repo": "mistralai/Ministral-3-8B-Instruct-2512-GGUF",
+      "revision": "0102285ad796bd99af90f58de616092e5630e970",
+      "file": "Ministral-3-8B-Instruct-2512-Q4_K_M.gguf",
+      "file_bytes": 5198911904,
+      "file_gib": 4.8418640196323395,
+      "fp16_kv_4096_single_sequence_gib": 0.53125
+    },
+    {
+      "model": "Ministral 3 14B",
+      "license": "Apache-2.0",
+      "repo": "mistralai/Ministral-3-14B-Instruct-2512-GGUF",
+      "revision": "74fac473c43357d7fb2671713608183cc72496d0",
+      "file": "Ministral-3-14B-Instruct-2512-Q4_K_M.gguf",
+      "file_bytes": 8239593024,
+      "file_gib": 7.673718988895416,
+      "fp16_kv_4096_single_sequence_gib": 0.625
+    },
+    {
+      "model": "Qwen3.5 9B",
+      "license": "Apache-2.0",
+      "repo": "unsloth/Qwen3.5-9B-GGUF",
+      "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+      "file": "Qwen3.5-9B-Q4_K_M.gguf",
+      "file_bytes": 5680522464,
+      "file_gib": 5.290398806333542,
+      "fp16_kv_4096_single_sequence_gib": null,
+      "note": "Hybrid architecture: no dense-transformer KV formula applied; conversion is by Unsloth, not the original model publisher."
+    }
+  ]
+}

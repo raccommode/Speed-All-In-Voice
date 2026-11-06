@@ -46,7 +46,7 @@ For another OpenAI-compatible server, set `SPEED_LLM_URL`, `SPEED_LLM_MODEL`, an
 
 ## OpenRouter and small/large model routing
 
-OpenRouter works through the same streaming interface. The [measured small-versus-large comparison](benchmarks/OPENROUTER.md) includes direct calls and sequential delegation, costs, and configuration commands. The local `.env` is never committed. Sequential delegation is an experiment, not the default routing policy.
+OpenRouter works through the same streaming interface. The current [open-model comparison for 16 GiB VRAM](benchmarks/OPEN_MODELS_16GB.md) covers Ministral 3B/8B/14B and Qwen3.5 9B, answer errors, cloud timings, and local memory estimates. The [earlier closed-model comparison](benchmarks/OPENROUTER.md) is historical evidence only. The local `.env` is never committed. Sequential delegation is an experiment, not the default routing policy.
 
 ## Languages and voice cloning
 

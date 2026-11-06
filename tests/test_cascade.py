@@ -55,3 +55,31 @@ def test_openrouter_key_is_only_mapped_to_exact_service(monkeypatch):
     monkeypatch.setenv("SPEED_LLM_URL", "https://openrouter.ai/api/v1")
     monkeypatch.setenv("SPEED_LLM_KEY", "explicit-test-key")
     assert Settings.from_env().llm_key == "explicit-test-key"
+
+
+async def test_reasoning_control_is_explicit_in_cloud_request():
+    import json
+
+    import httpx
+
+    captured = []
+
+    def handler(request):
+        captured.append(json.loads(request.content))
+        return httpx.Response(
+            200, text='data: {"choices":[{"delta":{"content":"Hello"}}]}\n\ndata: [DONE]\n\n'
+        )
+
+    cloud = Cloud("test-key", "small", "large", disable_reasoning=True)
+    await cloud.client.aclose()
+    cloud.client = httpx.AsyncClient(
+        base_url="https://openrouter.ai/api/v1/", transport=httpx.MockTransport(handler)
+    )
+    try:
+        assert [t async for t in cloud.request("large", [])] == ["Hello"]
+        assert captured[-1]["reasoning"] == {"enabled": False}
+        cloud.disable_reasoning = False
+        assert [t async for t in cloud.request("large", [])] == ["Hello"]
+        assert "reasoning" not in captured[-1]
+    finally:
+        await cloud.close()

@@ -1,0 +1,990 @@
+{
+  "date_utc": "2026-11-06T20:22:46.702241+00:00",
+  "hardware": "Mac mini M4, 16 GB; local French Pocket TTS CPU",
+  "small": "mistralai/ministral-3b-2512",
+  "large": "mistralai/ministral-14b-2512",
+  "router_prompt": "You are the fast front end of a voice assistant. For a simple factual question or a single arithmetic operation, respond with ANSWER on its own first line, then give the actual short answer in the user's language. For multi-step reasoning, complex constraints, uncertainty, or anything you cannot confidently answer, output only DELEGATE. Never provide filler, a preamble, or explain the routing. Do not answer the complex question yourself. Routing markers are not spoken.",
+  "system_prompt": "You are a helpful voice assistant. Reply in the user's language. Use one or two short spoken sentences. No markdown, lists, or hidden reasoning.",
+  "prompts": {
+    "fact": "Quelle est la capitale de la France ? R\u00e9ponds bri\u00e8vement.",
+    "arithmetic": "Combien font dix-sept plus vingt-cinq ? R\u00e9ponds bri\u00e8vement.",
+    "reasoning": "Quel est le plus petit entier positif qui donne un reste de deux quand on le divise par trois, un reste de trois quand on le divise par cinq et un reste de deux quand on le divise par sept ? Donne le r\u00e9sultat et une courte v\u00e9rification."
+  },
+  "max_tokens_per_call": 128,
+  "temperature": 0,
+  "measurement": "Committed synthetic text to first generated speech. Includes WAN and routing; excludes STT, endpointing and acoustic playback. No prerecorded acknowledgement.",
+  "runs": [
+    {
+      "case": "fact",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.06975000724196434,
+      "first_token_ms": 412.59779199026525,
+      "last_token_ms": 566.2032919935882,
+      "llm_stream_done_ms": 574.6836670441553,
+      "first_audio_ms": 611.9279169943184,
+      "total_ms": 1303.1837079906836,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -37.244249950163066,
+      "reply": "La capitale de la France est Paris. C'est une ville magnifique !",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-14b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 15,
+            "total_tokens": 66,
+            "cost": 1.32e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.32e-05,
+              "upstream_inference_prompt_cost": 1.02e-05,
+              "upstream_inference_completions_cost": 3e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996566-EdoGuEoNRoAEpqmupVu9",
+          "provider": "Mistral",
+          "first_token_ms": 412.41362504661083,
+          "total_ms": 574.4965830817819
+        }
+      ],
+      "cost_usd": 1.32e-05
+    },
+    {
+      "case": "fact",
+      "repeat": 1,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.0072499969974160194,
+      "first_token_ms": 374.80345903895795,
+      "last_token_ms": 406.3381670275703,
+      "llm_stream_done_ms": 425.3241670085117,
+      "first_audio_ms": 473.4112089499831,
+      "total_ms": 933.7677089497447,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -48.0870419414714,
+      "reply": "Paris est la capitale de la France.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 9,
+            "total_tokens": 60,
+            "cost": 6.6e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 6.6e-06,
+              "upstream_inference_prompt_cost": 5.61e-06,
+              "upstream_inference_completions_cost": 9.9e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996568-qUP0pM8KUzZG3EhSGti4",
+          "provider": "Mistral",
+          "first_token_ms": 374.75520791485906,
+          "total_ms": 425.27170793619007
+        }
+      ],
+      "cost_usd": 6.6e-06
+    },
+    {
+      "case": "fact",
+      "repeat": 1,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.007207971066236496,
+      "first_token_ms": 508.31670803017914,
+      "last_token_ms": 508.3171250298619,
+      "llm_stream_done_ms": 541.7247080476955,
+      "first_audio_ms": 641.6245420696214,
+      "total_ms": 766.1476669600233,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -99.89983402192593,
+      "reply": "Paris",
+      "route": "small",
+      "route_ms": 476.6767080873251,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 117,
+            "completion_tokens": 6,
+            "total_tokens": 123,
+            "cost": 1.23e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.23e-05,
+              "upstream_inference_prompt_cost": 1.17e-05,
+              "upstream_inference_completions_cost": 6e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996568-RAynsbG1LXprOOneb1Ep",
+          "provider": "Mistral",
+          "first_token_ms": 395.1250839745626,
+          "total_ms": 541.6648340178654
+        }
+      ],
+      "cost_usd": 1.23e-05
+    },
+    {
+      "case": "fact",
+      "repeat": 2,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.00866700429469347,
+      "first_token_ms": 433.736625011079,
+      "last_token_ms": 545.7425420172513,
+      "first_audio_ms": 530.4138329811394,
+      "llm_stream_done_ms": 565.9030000679195,
+      "total_ms": 1005.1190420053899,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 35.48916708678007,
+      "reply": "Paris est la capitale de la France.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 9,
+            "total_tokens": 60,
+            "cost": 6e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 6e-06,
+              "upstream_inference_prompt_cost": 5.1e-06,
+              "upstream_inference_completions_cost": 9e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996569-gaPHsTaUylxnvlLC7nop",
+          "provider": "Mistral",
+          "first_token_ms": 433.6821249453351,
+          "total_ms": 565.8443339634687
+        }
+      ],
+      "cost_usd": 6e-06
+    },
+    {
+      "case": "fact",
+      "repeat": 2,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.006666057743132114,
+      "first_token_ms": 422.4572500679642,
+      "last_token_ms": 422.4574159597978,
+      "llm_stream_done_ms": 428.8719160249457,
+      "first_audio_ms": 506.120958016254,
+      "total_ms": 657.9027500702068,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -77.24904199130833,
+      "reply": "Paris",
+      "route": "small",
+      "route_ms": 422.4128749920055,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 117,
+            "completion_tokens": 6,
+            "total_tokens": 123,
+            "cost": 1.23e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.23e-05,
+              "upstream_inference_prompt_cost": 1.17e-05,
+              "upstream_inference_completions_cost": 6e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996570-huah2Gbzmu4dkHzigjUg",
+          "provider": "Mistral",
+          "first_token_ms": 319.0966669935733,
+          "total_ms": 428.82649996317923
+        }
+      ],
+      "cost_usd": 1.23e-05
+    },
+    {
+      "case": "fact",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006500049494206905,
+      "first_token_ms": 435.67633407656103,
+      "last_token_ms": 627.9754590941593,
+      "first_audio_ms": 495.7164170918986,
+      "llm_stream_done_ms": 638.2970000850037,
+      "total_ms": 1493.9854590920731,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 142.58058299310505,
+      "reply": "La capitale de la France est Paris. C'est une ville tr\u00e8s connue dans le monde entier.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-14b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 20,
+            "total_tokens": 71,
+            "cost": 1.42e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.42e-05,
+              "upstream_inference_prompt_cost": 1.02e-05,
+              "upstream_inference_completions_cost": 4e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996571-3ImvidplCGZrZoJmcoia",
+          "provider": "Mistral",
+          "first_token_ms": 435.6362500693649,
+          "total_ms": 638.2536250166595
+        }
+      ],
+      "cost_usd": 1.42e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.01991703175008297,
+      "first_token_ms": 849.7547920560464,
+      "last_token_ms": 869.4426669972017,
+      "llm_stream_done_ms": 898.9768750034273,
+      "first_audio_ms": 923.2126250863075,
+      "total_ms": 1294.9603330343962,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -24.23575008288026,
+      "reply": "Cela fait quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-14b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 7,
+            "total_tokens": 58,
+            "cost": 1.276e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.276e-05,
+              "upstream_inference_prompt_cost": 1.122e-05,
+              "upstream_inference_completions_cost": 1.54e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996572-pjsbSZfCerq8qsOVv3rE",
+          "provider": "Mistral",
+          "first_token_ms": 849.603540962562,
+          "total_ms": 898.8222080515698
+        }
+      ],
+      "cost_usd": 1.276e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 1,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.006624963134527206,
+      "first_token_ms": 465.55579197593033,
+      "last_token_ms": 559.3552920036018,
+      "llm_stream_done_ms": 565.9470839891583,
+      "first_audio_ms": 589.9468340212479,
+      "total_ms": 903.4633339615539,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -23.99975003208965,
+      "reply": "Soit, c'est trente-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 9,
+            "total_tokens": 60,
+            "cost": 6e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 6e-06,
+              "upstream_inference_prompt_cost": 5.1e-06,
+              "upstream_inference_completions_cost": 9e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996574-l3kv6sfqHroKmdmnKRzp",
+          "provider": "Mistral",
+          "first_token_ms": 465.516334050335,
+          "total_ms": 565.9047500230372
+        }
+      ],
+      "cost_usd": 6e-06
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 1,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.007041962817311287,
+      "first_token_ms": 369.98633306939155,
+      "last_token_ms": 369.99637505505234,
+      "llm_stream_done_ms": 518.699457985349,
+      "first_audio_ms": 602.2147500189021,
+      "total_ms": 781.2439170666039,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -83.51529203355312,
+      "reply": "42",
+      "route": "small",
+      "route_ms": 369.93729101959616,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 117,
+            "completion_tokens": 7,
+            "total_tokens": 124,
+            "cost": 1.24e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.24e-05,
+              "upstream_inference_prompt_cost": 1.17e-05,
+              "upstream_inference_completions_cost": 7e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996575-AsfYvIgmMPKztz5TQs5y",
+          "provider": "Mistral",
+          "first_token_ms": 331.77699998486787,
+          "total_ms": 518.6427920125425
+        }
+      ],
+      "cost_usd": 1.24e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 2,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.006749993190169334,
+      "first_token_ms": 514.0917920507491,
+      "last_token_ms": 577.0677500404418,
+      "first_audio_ms": 632.826374960132,
+      "llm_stream_done_ms": 681.9893750362098,
+      "total_ms": 1034.7788749495521,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 49.16300007607788,
+      "reply": "Soit, c'est trente-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 9,
+            "total_tokens": 60,
+            "cost": 6.6e-06,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 6.6e-06,
+              "upstream_inference_prompt_cost": 5.61e-06,
+              "upstream_inference_completions_cost": 9.9e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996575-ANgcRjhLmO5qs8tJKV0E",
+          "provider": "Mistral",
+          "first_token_ms": 514.0508339973167,
+          "total_ms": 681.9457090459764
+        }
+      ],
+      "cost_usd": 6.6e-06
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 2,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.010457937605679035,
+      "first_token_ms": 460.8762079151347,
+      "last_token_ms": 484.84612500760704,
+      "llm_stream_done_ms": 493.04849992040545,
+      "first_audio_ms": 562.2590419370681,
+      "total_ms": 788.2203749613836,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -69.21054201666266,
+      "reply": "42",
+      "route": "small",
+      "route_ms": 460.7934169471264,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 117,
+            "completion_tokens": 7,
+            "total_tokens": 124,
+            "cost": 1.24e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.24e-05,
+              "upstream_inference_prompt_cost": 1.17e-05,
+              "upstream_inference_completions_cost": 7e-07
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996576-BRzJNUtk5sVQZ6cbKozW",
+          "provider": "Mistral",
+          "first_token_ms": 364.5478329854086,
+          "total_ms": 492.98733298201114
+        }
+      ],
+      "cost_usd": 1.24e-05
+    },
+    {
+      "case": "arithmetic",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006624963134527206,
+      "first_token_ms": 399.63862497825176,
+      "last_token_ms": 507.3097919812426,
+      "llm_stream_done_ms": 509.5207500271499,
+      "first_audio_ms": 554.2910839430988,
+      "total_ms": 986.9661669945344,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -44.77033391594887,
+      "reply": "Cela fait quarante-deux.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-14b-2512",
+          "usage": {
+            "prompt_tokens": 51,
+            "completion_tokens": 7,
+            "total_tokens": 58,
+            "cost": 1.16e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.16e-05,
+              "upstream_inference_prompt_cost": 1.02e-05,
+              "upstream_inference_completions_cost": 1.4e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996577-xaKHYjmdCQIDMPsoyJ0N",
+          "provider": "Mistral",
+          "first_token_ms": 399.5982080232352,
+          "total_ms": 509.4784999964759
+        }
+      ],
+      "cost_usd": 1.16e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 1,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.006624963134527206,
+      "first_token_ms": 381.1055830447003,
+      "last_token_ms": 837.0314160129055,
+      "first_audio_ms": 474.547415971756,
+      "llm_stream_done_ms": 843.0453330511227,
+      "total_ms": 3169.1455410327762,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 368.49791707936674,
+      "reply": "Le plus petit entier positif est 23.\n\nV\u00e9rification : 23 \u00f7 3 = reste 2, 23 \u00f7 5 = reste 3, 23 \u00f7 7 = reste 2.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-14b-2512",
+          "usage": {
+            "prompt_tokens": 91,
+            "completion_tokens": 51,
+            "total_tokens": 142,
+            "cost": 3.124e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.124e-05,
+              "upstream_inference_prompt_cost": 2.002e-05,
+              "upstream_inference_completions_cost": 1.122e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996578-205HjSLCRncZwkxl5sk6",
+          "provider": "Mistral",
+          "first_token_ms": 381.06383301783353,
+          "total_ms": 843.0010830052197
+        }
+      ],
+      "cost_usd": 3.124e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 1,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.011999974958598614,
+      "first_token_ms": 385.407832916826,
+      "last_token_ms": 4994.519791915081,
+      "first_audio_ms": 476.946874987334,
+      "llm_stream_done_ms": 4996.617416967638,
+      "total_ms": 7682.367124943994,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 4519.670541980304,
+      "reply": "Le plus petit entier est **14**.\n\nV\u00e9rification :\n- 14 \u00f7 3 = 4 reste 2 \u2714\n- 14 \u00f7 5 = 2 reste 4 \u2192 *Attention, \u00e7a ne marche pas ici. Je me suis tromp\u00e9.*\n\nCorrection : **Le bon nombre est 19**.\n\nV\u00e9rification :\n- 19 \u00f7 3 = 6 reste 1 \u2192 *Non encore \u00e7a non plus.*\n\nJe recalcule : **Le bon nombre est 19 ne convient pas, essayons 14 + LCM(3,5",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 91,
+            "completion_tokens": 128,
+            "total_tokens": 219,
+            "cost": 2.409e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 2.409e-05,
+              "upstream_inference_prompt_cost": 1.001e-05,
+              "upstream_inference_completions_cost": 1.408e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996581-cKQBYGE5rPO7EgaFbUha",
+          "provider": "Mistral",
+          "first_token_ms": 385.3507919702679,
+          "total_ms": 4996.559291961603
+        }
+      ],
+      "cost_usd": 2.409e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 1,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.006959075108170509,
+      "first_token_ms": 403.442042064853,
+      "last_token_ms": 629.1585840517655,
+      "first_audio_ms": 476.80683399084955,
+      "llm_stream_done_ms": 639.8462500656024,
+      "total_ms": 2425.1505840802565,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 163.0394160747528,
+      "reply": "**Le plus petit entier positif est 23.**\n\n**V\u00e9rification :**\n- 23 \u00f7 3 = 7 avec reste **2** \u2705\n- 23 \u00f7 5 = 4 avec reste **3** \u2705\n- 23 \u00f7 7 = 3 avec reste **2** \u2705",
+      "route": "small",
+      "route_ms": 384.67441697139293,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 157,
+            "completion_tokens": 77,
+            "total_tokens": 234,
+            "cost": 1.188e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 128,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.188e-05,
+              "upstream_inference_prompt_cost": 4.18e-06,
+              "upstream_inference_completions_cost": 7.7e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996589-RfSJet8UIrnxKbfWtsSv",
+          "provider": "Mistral",
+          "first_token_ms": 384.52029204927385,
+          "total_ms": 639.7751669865102
+        }
+      ],
+      "cost_usd": 1.188e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 2,
+      "mode": "small",
+      "turn_id": 1,
+      "stt_ms": 0.005958019755780697,
+      "first_token_ms": 397.11391692981124,
+      "last_token_ms": 3306.3974579563364,
+      "first_audio_ms": 488.5577919194475,
+      "llm_stream_done_ms": 3308.088874910027,
+      "total_ms": 6175.870249979198,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 2819.5310829905793,
+      "reply": "Le plus petit entier est **14**.\n\nV\u00e9rification :\n- 14 \u00f7 3 = 4 reste 2 \u2714\n- 14 \u00f7 5 = 2 reste 4 \u2192 *Attention, \u00e7a ne marche pas !*\n*Correction : le bon nombre est 102.*\n\n102 \u00f7 3 = 34 reste 0 \u2192 *Erreur, il faut 2.*\n*R\u00e9essayons : 102 n'est pas bon. Le vrai est 102 n'est pas correct.*\n\nEn fait, c'est **102",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 91,
+            "completion_tokens": 128,
+            "total_tokens": 219,
+            "cost": 2.409e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 2.409e-05,
+              "upstream_inference_prompt_cost": 1.001e-05,
+              "upstream_inference_completions_cost": 1.408e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996591-lP8gRXW1WREIY9BN3P2j",
+          "provider": "Mistral",
+          "first_token_ms": 397.0685829408467,
+          "total_ms": 3308.0432909773663
+        }
+      ],
+      "cost_usd": 2.409e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 2,
+      "mode": "routed",
+      "turn_id": 1,
+      "stt_ms": 0.008458038792014122,
+      "first_token_ms": 514.2190830083564,
+      "last_token_ms": 788.1029580021277,
+      "first_audio_ms": 769.9815410887823,
+      "llm_stream_done_ms": 833.2208330975845,
+      "total_ms": 3865.2523750206456,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 63.239292008802295,
+      "reply": "**Le plus petit entier positif est 23.**\n\n**V\u00e9rification :**\n- 23 \u00f7 3 = 7 avec reste **2** \u2705\n- 23 \u00f7 5 = 4 avec reste **3** \u2705\n- 23 \u00f7 7 = 3 avec reste **2** \u2705",
+      "route": "small",
+      "route_ms": 514.1542078927159,
+      "calls": [
+        {
+          "model": "mistralai/ministral-3b-2512",
+          "usage": {
+            "prompt_tokens": 157,
+            "completion_tokens": 77,
+            "total_tokens": 234,
+            "cost": 1.188e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 128,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 1.188e-05,
+              "upstream_inference_prompt_cost": 4.18e-06,
+              "upstream_inference_completions_cost": 7.7e-06
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996598-z79egRnRjH85iReNZKSC",
+          "provider": "Mistral",
+          "first_token_ms": 491.5511660510674,
+          "total_ms": 833.1500000786036
+        }
+      ],
+      "cost_usd": 1.188e-05
+    },
+    {
+      "case": "reasoning",
+      "repeat": 2,
+      "mode": "large",
+      "turn_id": 1,
+      "stt_ms": 0.011499971151351929,
+      "first_token_ms": 663.778749993071,
+      "last_token_ms": 1105.0278330221772,
+      "first_audio_ms": 766.1902499385178,
+      "llm_stream_done_ms": 1125.85750001017,
+      "total_ms": 3031.9374579703435,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 359.66725007165223,
+      "reply": "Le plus petit entier positif est 23.\n\nV\u00e9rification : 23 \u00f7 3 = reste 2, 23 \u00f7 5 = reste 3, 23 \u00f7 7 = reste 2.",
+      "route": null,
+      "route_ms": null,
+      "calls": [
+        {
+          "model": "mistralai/ministral-14b-2512",
+          "usage": {
+            "prompt_tokens": 91,
+            "completion_tokens": 51,
+            "total_tokens": 142,
+            "cost": 3.124e-05,
+            "is_byok": false,
+            "prompt_tokens_details": {
+              "cached_tokens": 0,
+              "cache_write_tokens": 0,
+              "audio_tokens": 0,
+              "video_tokens": 0
+            },
+            "cost_details": {
+              "upstream_inference_cost": 3.124e-05,
+              "upstream_inference_prompt_cost": 2.002e-05,
+              "upstream_inference_completions_cost": 1.122e-05
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0,
+              "image_tokens": 0,
+              "audio_tokens": 0
+            }
+          },
+          "generation_id": "gen-1793996602-OhytuO9PFefdoVqaDNG7",
+          "provider": "Mistral",
+          "first_token_ms": 663.699832977727,
+          "total_ms": 1125.7768329232931
+        }
+      ],
+      "cost_usd": 3.124e-05
+    }
+  ],
+  "summary": {
+    "fact": {
+      "large": {
+        "first_audio_p50_ms": 553.8221670431085,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "small": {
+        "first_audio_p50_ms": 501.91252096556127,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "routed": {
+        "first_audio_p50_ms": 573.8727500429377,
+        "routes": [
+          "small",
+          "small"
+        ]
+      }
+    },
+    "arithmetic": {
+      "large": {
+        "first_audio_p50_ms": 738.7518545147032,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "small": {
+        "first_audio_p50_ms": 611.3866044906899,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "routed": {
+        "first_audio_p50_ms": 582.2368959779851,
+        "routes": [
+          "small",
+          "small"
+        ]
+      }
+    },
+    "reasoning": {
+      "large": {
+        "first_audio_p50_ms": 620.3688329551369,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "small": {
+        "first_audio_p50_ms": 482.75233345339075,
+        "routes": [
+          null,
+          null
+        ]
+      },
+      "routed": {
+        "first_audio_p50_ms": 623.3941875398159,
+        "routes": [
+          "small",
+          "small"
+        ]
+      }
+    }
+  },
+  "total_cost_usd": 0.00026078
+}

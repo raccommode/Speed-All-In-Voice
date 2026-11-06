@@ -32,7 +32,7 @@ ROUTER = (
 
 
 class Cloud:
-    def __init__(self, key, small, large):
+    def __init__(self, key, small, large, disable_reasoning=False):
         self.client = httpx.AsyncClient(
             base_url="https://openrouter.ai/api/v1/",
             headers={
@@ -41,6 +41,7 @@ class Cloud:
             },
             timeout=httpx.Timeout(90, connect=10),
         )
+        self.disable_reasoning = disable_reasoning
         self.small, self.large = small, large
         self.calls = []
         self.route = None
@@ -61,6 +62,7 @@ class Cloud:
                 "max_tokens": 128,
                 "temperature": 0,
                 "stream_options": {"include_usage": True},
+                **({"reasoning": {"enabled": False}} if self.disable_reasoning else {}),
             },
         ) as response:
             response.raise_for_status()
@@ -128,10 +130,17 @@ class Cloud:
 
 async def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--small", default="google/gemini-2.5-flash-lite")
-    parser.add_argument("--large", default="anthropic/claude-sonnet-4.6")
+    parser.add_argument("--small", default="mistralai/ministral-3b-2512")
+    parser.add_argument("--large", default="mistralai/ministral-8b-2512")
+    parser.add_argument("--disable-reasoning", action="store_true")
+    parser.add_argument(
+        "--modes",
+        nargs="+",
+        choices=["small", "large", "routed"],
+        default=["large", "small", "routed"],
+    )
     parser.add_argument("--runs", type=int, default=2)
-    parser.add_argument("--output", default="benchmarks/results/openrouter-cascade.json")
+    parser.add_argument("--output", default="benchmarks/results/openrouter-open-3b-8b.json")
     args = parser.parse_args()
     if not 1 <= args.runs <= 3:
         parser.error("Use one to three repetitions for this small paid experiment")
@@ -141,7 +150,7 @@ async def main():
     key = os.getenv("OPENROUTER_API_KEY")
     if not key:
         parser.error("Set OPENROUTER_API_KEY locally; never commit credentials")
-    cloud = Cloud(key, args.small, args.large)
+    cloud = Cloud(key, args.small, args.large, args.disable_reasoning)
     settings = replace(
         Settings(), language="fr", tts_language="french", voice="estelle", max_reply_tokens=128
     )
@@ -155,8 +164,10 @@ async def main():
         "router_prompt": ROUTER,
         "system_prompt": settings.system_prompt,
         "prompts": CASES,
+        "modes": args.modes,
         "max_tokens_per_call": 128,
         "temperature": 0,
+        "reasoning_disabled_requested": args.disable_reasoning,
         "measurement": "Committed synthetic text to first generated speech. Includes WAN and routing; excludes STT, endpointing and acoustic playback. No prerecorded acknowledgement.",
         "runs": [],
         "summary": {},
@@ -164,8 +175,9 @@ async def main():
     try:
         for case, prompt in CASES.items():
             for repeat in range(args.runs):
-                modes = ["large", "small", "routed"]
-                modes = modes[repeat % 3 :] + modes[: repeat % 3]
+                modes = args.modes
+                offset = repeat % len(modes)
+                modes = modes[offset:] + modes[:offset]
                 for mode in modes:
                     cloud.mode = mode
                     cloud.calls = []
@@ -207,7 +219,7 @@ async def main():
                     Path(args.output).write_text(json.dumps(result, indent=2) + "\n")
         for case in CASES:
             result["summary"][case] = {}
-            for mode in ["large", "small", "routed"]:
+            for mode in args.modes:
                 rows = [r for r in result["runs"] if r["case"] == case and r["mode"] == mode]
                 result["summary"][case][mode] = {
                     "first_audio_p50_ms": float(np.median([r["first_audio_ms"] for r in rows])),
