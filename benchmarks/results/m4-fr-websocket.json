@@ -1,0 +1,176 @@
+{
+  "measurement": "Paced synthetic PCM to first received WebSocket audio; no browser playback",
+  "fixture_sha256": "c1fc46a5bce220629d48d15b372014c86e05f3f4fb56ab06afd4a2e284d3d8c3",
+  "speech_end_estimator": "Last input sample above absolute amplitude 0.02",
+  "speech_end_to_first_received_audio_ms": 1361.9352500662208,
+  "events": [
+    {
+      "type": "speech_started"
+    },
+    {
+      "type": "transcript",
+      "turn_id": 1,
+      "text": "quelle est la capitale de la France ?"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": "La"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": " capit"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": "ale"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": " de"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": " la"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": " France"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": " est"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": " Paris"
+    },
+    {
+      "type": "text",
+      "turn_id": 1,
+      "text": "."
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "audio",
+      "bytes": 3840
+    },
+    {
+      "type": "done",
+      "turn_id": 1,
+      "metrics": {
+        "turn_id": 1,
+        "stt_ms": 345.03795800264925,
+        "first_token_ms": 580.8411249890924,
+        "first_audio_ms": 884.8083328921348,
+        "total_ms": 1134.556166944094
+      }
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "date_utc": "2026-11-06T12:18:08.227712+00:00",
+  "hardware_label": "NVIDIA RTX 3060 12 GB, shared Proxmox LXC; CUDA TTS",
+  "platform": "Linux-7.0.2-6-pve-x86_64-with-glibc2.41",
+  "python": "3.13.5",
+  "packages": {
+    "torch": "2.9.1+cu126",
+    "pocket-tts": "4.0.1",
+    "faster-whisper": "1.2.1",
+    "numpy": "2.5.4",
+    "silero-vad": "6.2.3"
+  },
+  "config": {
+    "backend": "cuda",
+    "stt_model": "Systran/faster-whisper-small@536b0662742c02347bc0e980a01041f333bce120",
+    "language": "fr",
+    "tts_language": "french",
+    "voice": "estelle",
+    "tts_device": "cuda",
+    "decode_steps": 2,
+    "threads": 2,
+    "llm_model": "qwen2.5:1.5b",
+    "silence_ms": 320,
+    "max_turn_seconds": 30,
+    "max_reply_tokens": 160,
+    "system_prompt": "You are a helpful voice assistant. Reply in the user's language. Use one or two short spoken sentences. No markdown, lists, or hidden reasoning."
+  },
+  "model_load_and_warmup_ms": 5170.404147007503,
+  "first_pipeline_call": null,
+  "fixture": {
+    "source": "Generated locally by the selected TTS voice; not a human accuracy corpus",
+    "text": "Quelle est la capitale de la France ?",
+    "pcm_sha256": "1423948a5cf674ebfcc2db96deb2d47118214d4e4b1a16d76a6aa372594a4d1a",
+    "seconds": 1.84
+  },
+  "measurement": "In-process server timing; excludes endpoint silence, network, microphone and playback buffering",
+  "summary": {
+    "stt_ms": {
+      "p50": 97.06802741857246,
+      "p95": 115.78777706017716
+    },
+    "tts_first_chunk_ms": {
+      "p50": 50.0656520598568,
+      "p95": 68.85773994144982
+    },
+    "tts_real_time_factor": {
+      "p50": 0.21387834824660484,
+      "p95": 0.24819757767278738
+    }
+  },
+  "runs": [
+    {
+      "stt_ms": 105.23911495693028,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 46.755095943808556,
+      "tts_total_ms": 391.9518579496071,
+      "tts_audio_seconds": 2.0,
+      "tts_real_time_factor": 0.19597592897480354
+    },
+    {
+      "stt_ms": 97.28294692467898,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 52.84231703262776,
+      "tts_total_ms": 418.2125680381432,
+      "tts_audio_seconds": 2.0,
+      "tts_real_time_factor": 0.2091062840190716
+    },
+    {
+      "stt_ms": 95.49324901308864,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 47.28898708708584,
+      "tts_total_ms": 362.29619407095015,
+      "tts_audio_seconds": 1.84,
+      "tts_real_time_factor": 0.19690010547334247
+    },
+    {
+      "stt_ms": 95.87961505167186,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 46.44870897755027,
+      "tts_total_ms": 433.2598780747503,
+      "tts_audio_seconds": 1.92,
+      "tts_real_time_factor": 0.2256561864972658
+    },
+    {
+      "stt_ms": 109.88181608263403,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 77.05148798413575,
+      "tts_total_ms": 504.0344230365008,
+      "tts_audio_seconds": 1.92,
+      "tts_real_time_factor": 0.2625179286648442
+    },
+    {
+      "stt_ms": 120.6199269508943,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 58.84315900038928,
+      "tts_total_ms": 442.2674359520897,
+      "tts_audio_seconds": 2.0,
+      "tts_real_time_factor": 0.22113371797604486
+    },
+    {
+      "stt_ms": 95.56771395727992,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 45.94889504369348,
+      "tts_total_ms": 369.55456901341677,
+      "tts_audio_seconds": 1.92,
+      "tts_real_time_factor": 0.19247633802782124
+    },
+    {
+      "stt_ms": 96.85310791246593,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 46.204104903154075,
+      "tts_total_ms": 404.1418129345402,
+      "tts_audio_seconds": 2.0,
+      "tts_real_time_factor": 0.2020709064672701
+    },
+    {
+      "stt_ms": 94.53406592365354,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 56.74292799085379,
+      "tts_total_ms": 461.3898529205471,
+      "tts_audio_seconds": 2.0,
+      "tts_real_time_factor": 0.23069492646027356
+    },
+    {
+      "stt_ms": 105.63031502533704,
+      "transcript": "quelle est la capitale de la France ?",
+      "tts_first_chunk_ms": 52.90204600896686,
+      "tts_total_ms": 419.80879195034504,
+      "tts_audio_seconds": 1.92,
+      "tts_real_time_factor": 0.21865041247413805
+    }
+  ],
+  "git_revision": "uncommitted-initial-development",
+  "environment_notes": [
+    "Existing isolated inference environment, Python 3.13 instead of packaged Python 3.12; see recorded dependency versions.",
+    "GPU shared with existing workloads; approximately 9531 MiB occupied before benchmark.",
+    "CPU: Intel Core i7-6700 at 3.40 GHz.",
+    "Local checkpoint cache path replaced by its public model ID and exact revision.",
+    "No LLM pipeline measured on this host."
+  ]
+}

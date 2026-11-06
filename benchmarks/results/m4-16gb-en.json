@@ -1,0 +1,257 @@
+{
+  "schema": 1,
+  "date_utc": "2026-11-06T12:12:13.349437+00:00",
+  "hardware_label": "Mac mini M4, 10-core CPU, 16 GB unified memory",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "python": "3.12.12",
+  "packages": {
+    "torch": "2.15.0",
+    "pocket-tts": "4.0.1",
+    "mlx-whisper": "0.4.3",
+    "faster-whisper": "1.2.1",
+    "numpy": "2.5.4",
+    "silero-vad": "6.2.3"
+  },
+  "config": {
+    "backend": "mlx",
+    "stt_model": "",
+    "language": "en",
+    "tts_language": "english",
+    "voice": "alba",
+    "tts_device": "cpu",
+    "decode_steps": 2,
+    "threads": 2,
+    "llm_model": "qwen2.5:1.5b",
+    "silence_ms": 320,
+    "max_turn_seconds": 30,
+    "max_reply_tokens": 160,
+    "system_prompt": "You are a helpful voice assistant. Reply in the user's language. Use one or two short spoken sentences. No markdown, lists, or hidden reasoning."
+  },
+  "model_load_and_warmup_ms": 5973.708292003721,
+  "first_pipeline_call": {
+    "turn_id": 1,
+    "stt_ms": 204.68183304183185,
+    "first_token_ms": 334.6467500086874,
+    "first_audio_ms": 488.02354105282575,
+    "total_ms": 727.3347500013188,
+    "transcript": "What is the capital of France?",
+    "reply": "Paris is the capital of France.",
+    "output_audio_seconds": 2.0
+  },
+  "fixture": {
+    "source": "Generated locally by the selected TTS voice; not a human accuracy corpus",
+    "text": "What is the capital of France?",
+    "pcm_sha256": "46d0068f08c48a895930fb42dd4cda091e020c4fd5de31c30b47a662f0cc706b",
+    "seconds": 1.84
+  },
+  "measurement": "In-process server timing; excludes endpoint silence, network, microphone and playback buffering",
+  "summary": {
+    "stt_ms": {
+      "p50": 198.1028125155717,
+      "p95": 200.59660229599103
+    },
+    "tts_first_chunk_ms": {
+      "p50": 42.420479003340006,
+      "p95": 44.52355609391816
+    },
+    "tts_real_time_factor": {
+      "p50": 0.13622178817900862,
+      "p95": 0.13879111311252929
+    },
+    "pipeline_first_token_ms": {
+      "p50": 286.2030835240148,
+      "p95": 289.8636709258426
+    },
+    "pipeline_first_audio_ms": {
+      "p50": 437.0756454882212,
+      "p95": 444.3109793297481
+    },
+    "pipeline_total_ms": {
+      "p50": 712.4468960100785,
+      "p95": 734.2249687761068
+    }
+  },
+  "runs": [
+    {
+      "stt_ms": 201.73133397474885,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 42.62245795689523,
+      "tts_total_ms": 278.2475419808179,
+      "tts_audio_seconds": 2.0,
+      "tts_real_time_factor": 0.13912377099040896,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 197.54262501373887,
+        "first_token_ms": 291.2275840062648,
+        "first_audio_ms": 448.0135419871658,
+        "total_ms": 708.0630420241505,
+        "transcript": "What is the capital of France?",
+        "reply": "The capital of France is Paris.",
+        "output_audio_seconds": 2.16
+      }
+    },
+    {
+      "stt_ms": 198.06862494442612,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 44.157000025734305,
+      "tts_total_ms": 318.3711660094559,
+      "tts_audio_seconds": 2.32,
+      "tts_real_time_factor": 0.1372289508661448,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 195.816416060552,
+        "first_token_ms": 286.5068750688806,
+        "first_audio_ms": 438.6800000211224,
+        "total_ms": 716.8307499960065,
+        "transcript": "What is the capital of France?",
+        "reply": "The capital of France is Paris.",
+        "output_audio_seconds": 2.24
+      }
+    },
+    {
+      "stt_ms": 198.25679203495383,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 44.38383306842297,
+      "tts_total_ms": 332.12287502828985,
+      "tts_audio_seconds": 2.4,
+      "tts_real_time_factor": 0.13838453126178746,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 195.05116704385728,
+        "first_token_ms": 284.5450839959085,
+        "first_audio_ms": 439.64950006920844,
+        "total_ms": 733.0380000639707,
+        "transcript": "What is the capital of France?",
+        "reply": "Paris is the capital of France.",
+        "output_audio_seconds": 2.4
+      }
+    },
+    {
+      "stt_ms": 199.2097080219537,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 44.010791927576065,
+      "tts_total_ms": 294.34612498153,
+      "tts_audio_seconds": 2.16,
+      "tts_real_time_factor": 0.13627135415811573,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 194.93845803663135,
+        "first_token_ms": 286.84575005900115,
+        "first_audio_ms": 439.50379197485745,
+        "total_ms": 735.1961249951273,
+        "transcript": "What is the capital of France?",
+        "reply": "Paris is the capital of France.",
+        "output_audio_seconds": 2.48
+      }
+    },
+    {
+      "stt_ms": 197.16491701547056,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 41.76783293951303,
+      "tts_total_ms": 276.6865409212187,
+      "tts_audio_seconds": 2.0,
+      "tts_real_time_factor": 0.13834327046060935,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 196.835583075881,
+        "first_token_ms": 279.7796659870073,
+        "first_audio_ms": 433.51000000257045,
+        "total_ms": 685.6166659854352,
+        "transcript": "What is the capital of France?",
+        "reply": "The capital of France is Paris.",
+        "output_audio_seconds": 2.16
+      }
+    },
+    {
+      "stt_ms": 198.38370801880956,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 42.063499917276204,
+      "tts_total_ms": 294.1319999517873,
+      "tts_audio_seconds": 2.16,
+      "tts_real_time_factor": 0.13617222219990152,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 196.15291699301451,
+        "first_token_ms": 276.70200006105006,
+        "first_audio_ms": 432.6834169914946,
+        "total_ms": 727.3443329613656,
+        "transcript": "What is the capital of France?",
+        "reply": "The capital of France is Paris.",
+        "output_audio_seconds": 2.56
+      }
+    },
+    {
+      "stt_ms": 197.58754200302064,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 37.99433307722211,
+      "tts_total_ms": 287.44783299043775,
+      "tts_audio_seconds": 2.24,
+      "tts_real_time_factor": 0.1283249254421597,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 195.73658297304064,
+        "first_token_ms": 288.196666049771,
+        "first_audio_ms": 435.47129095532,
+        "total_ms": 699.7840829426423,
+        "transcript": "What is the capital of France?",
+        "reply": "Paris is the capital of France.",
+        "output_audio_seconds": 2.24
+      }
+    },
+    {
+      "stt_ms": 196.99783402029425,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 41.9273329898715,
+      "tts_total_ms": 277.65545796137303,
+      "tts_audio_seconds": 2.08,
+      "tts_real_time_factor": 0.1334882009429678,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 193.90479195863008,
+        "first_token_ms": 282.0036249468103,
+        "first_audio_ms": 431.95758399087936,
+        "total_ms": 664.4541249843314,
+        "transcript": "What is the capital of France?",
+        "reply": "The capital of France is Paris.",
+        "output_audio_seconds": 2.0
+      }
+    },
+    {
+      "stt_ms": 198.1370000867173,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 44.637874932959676,
+      "tts_total_ms": 276.4477499295026,
+      "tts_audio_seconds": 2.08,
+      "tts_real_time_factor": 0.13290757208149162,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 194.1961250267923,
+        "first_token_ms": 285.899291979149,
+        "first_audio_ms": 434.83208399266005,
+        "total_ms": 726.9606250338256,
+        "transcript": "What is the capital of France?",
+        "reply": "The capital of France is Paris.",
+        "output_audio_seconds": 2.48
+      }
+    },
+    {
+      "stt_ms": 195.2070000115782,
+      "transcript": "What is the capital of France?",
+      "tts_first_chunk_ms": 42.21850004978478,
+      "tts_total_ms": 306.1586250551045,
+      "tts_audio_seconds": 2.32,
+      "tts_real_time_factor": 0.13196492459271747,
+      "pipeline": {
+        "turn_id": 1,
+        "stt_ms": 196.10958395060152,
+        "first_token_ms": 288.0909169325605,
+        "first_audio_ms": 439.78562497068197,
+        "total_ms": 677.5750420056283,
+        "transcript": "What is the capital of France?",
+        "reply": "Paris is the capital of France.",
+        "output_audio_seconds": 2.08
+      }
+    }
+  ],
+  "git_revision": "uncommitted-initial-development"
+}
