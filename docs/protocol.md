@@ -25,3 +25,11 @@ Server JSON events:
 The gateway sends transcripts and the last six completed exchanges to the configured `/chat/completions` endpoint. It does not forward raw microphone audio or voice references to the LLM. Interrupted partial replies are not added to history. Tool calls are not implemented; an agent adapter must execute tools and return speakable streamed text. Configure credentials through environment variables, never public frontend code.
 
 Use `examples/client.py` for a minimal text-to-voice client. The bundled browser demonstrates microphone input, playback, and cancellation. Echo cancellation is browser-dependent; this is not a validated acoustic echo canceller for speakerphone use.
+
+## LLM overlap metrics
+
+`last_token_ms` marks the last text delta observed by the gateway. `llm_stream_done_ms` marks the end of the consumed LLM stream; bounded queue backpressure can affect this observation. `audio_before_llm_done` is true only when the gateway emits audio before that stream ends. `audio_lead_ms` is stream end minus first audio: positive means speech started early, negative means it started after completion.
+
+To prove that speech starts before all response text is available, compare `first_audio_ms < last_token_ms`. The stream-end marker can arrive after the final text token, so `audio_before_llm_done` alone is insufficient for that stronger claim.
+
+These are server generation times, not acoustic playback timestamps. A very short answer from a fast LLM can finish before the TTS produces its first chunk even with streaming enabled. No filler or prerecorded acknowledgement is counted as a response.

@@ -55,7 +55,9 @@ async def audio_stream(models, text, stop):
             await worker
 
 
-async def respond(models, llm, settings, history, emit, turn_id, audio=None, text=None):
+async def respond(
+    models, llm, settings, history, emit, turn_id, audio=None, text=None, *, buffered_speech=False
+):
     start = time.perf_counter()
     stop = threading.Event()
     metrics = {"turn_id": turn_id}
@@ -80,11 +82,14 @@ async def respond(models, llm, settings, history, emit, turn_id, audio=None, tex
             buffer = PhraseBuffer()
             async for token in llm.tokens(messages):
                 metrics.setdefault("first_token_ms", (time.perf_counter() - start) * 1000)
+                metrics["last_token_ms"] = (time.perf_counter() - start) * 1000
                 answer.append(token)
                 await emit({"type": "text", "turn_id": turn_id, "text": token})
-                for phrase in buffer.push(token):
-                    await phrases.put(phrase)
-            for phrase in buffer.push("", final=True):
+                if not buffered_speech:
+                    for phrase in buffer.push(token):
+                        await phrases.put(phrase)
+            metrics["llm_stream_done_ms"] = (time.perf_counter() - start) * 1000
+            for phrase in buffer.push("".join(answer) if buffered_speech else "", final=True):
                 await phrases.put(phrase)
             await phrases.put(None)
 
@@ -112,6 +117,12 @@ async def respond(models, llm, settings, history, emit, turn_id, audio=None, tex
         )
         del history[:-12]
         metrics["total_ms"] = (time.perf_counter() - start) * 1000
+        metrics["audio_before_llm_done"] = (
+            metrics.get("first_audio_ms", float("inf")) < metrics["llm_stream_done_ms"]
+        )
+        metrics["audio_lead_ms"] = metrics["llm_stream_done_ms"] - metrics.get(
+            "first_audio_ms", metrics["llm_stream_done_ms"]
+        )
         await emit({"type": "done", "turn_id": turn_id, "metrics": metrics})
     finally:
         stop.set()

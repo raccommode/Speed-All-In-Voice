@@ -16,7 +16,7 @@ class PhraseBuffer:
         chunks = []
         while self.text:
             boundary = re.search(r"[.!?。！？]\s|[,;:]\s", self.text)
-            limit = 60 if self.first else 140
+            limit = 32 if self.first else 140
             cut = boundary.end() if boundary else 0
             if not cut and len(self.text) >= limit:
                 cut = self.text.rfind(" ", 0, limit + 1)

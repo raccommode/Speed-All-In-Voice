@@ -5,7 +5,7 @@ description = "Local, interruptible voice conversations for Ollama and AI agents
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 license = "MIT"
-dependencies = ["fastapi==0.162.0", "uvicorn[standard]==0.54.0", "httpx==0.28.1", "numpy==2.5.4", "soundfile==0.14.0", "pocket-tts==4.0.1", "silero-vad==6.2.3"]
+dependencies = ["fastapi==0.162.0", "uvicorn[standard]==0.54.0", "httpx==0.28.1", "numpy==2.5.4", "soundfile==0.14.0", "pocket-tts==4.0.1", "silero-vad==6.2.3", "onnxruntime==1.31.1"]
 [project.optional-dependencies]
 mac = ["mlx-whisper==0.4.3"]
 cuda = ["faster-whisper==1.2.1"]

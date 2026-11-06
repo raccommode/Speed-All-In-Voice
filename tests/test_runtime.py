@@ -191,3 +191,50 @@ async def test_sse_parser_handles_metadata_and_unicode():
     )
     assert [x async for x in llm.tokens([])] == ["Bonjour"]
     await llm.close()
+
+
+@pytest.mark.parametrize("buffered", [False, True])
+async def test_first_audio_relative_to_llm_completion_without_punctuation(buffered):
+    class Delayed:
+        async def tokens(self, messages):
+            yield "This explanation begins with several useful words "
+            await asyncio.sleep(0.15)
+            yield "and continues after the initial speech has started."
+
+    events = []
+
+    async def emit(event):
+        events.append(event)
+
+    await respond(
+        Models(), Delayed(), Settings(), [], emit, 1, text="Explain", buffered_speech=buffered
+    )
+    metrics = events[-1]["metrics"]
+    assert metrics["audio_before_llm_done"] is (not buffered)
+    assert (metrics["audio_lead_ms"] > 0) is (not buffered)
+    assert metrics["first_token_ms"] < metrics["llm_stream_done_ms"]
+
+
+def test_early_phrase_does_not_split_an_unfinished_word():
+    buffer = PhraseBuffer()
+    first = buffer.push("The capital of this beautiful coun")
+    assert first == ["The capital of this beautiful"]
+    rest = buffer.push("try is Paris.", final=True)
+    assert rest == ["country is Paris."]
+
+
+async def test_stream_end_is_not_mistaken_for_last_text_token():
+    class SlowEndMarker:
+        async def tokens(self, messages):
+            yield "Here is the complete short response, "
+            await asyncio.sleep(0.1)
+
+    events = []
+
+    async def emit(event):
+        events.append(event)
+
+    await respond(Models(), SlowEndMarker(), Settings(), [], emit, 1, text="Hi")
+    metrics = events[-1]["metrics"]
+    assert metrics["audio_before_llm_done"]
+    assert metrics["first_audio_ms"] > metrics["last_token_ms"]

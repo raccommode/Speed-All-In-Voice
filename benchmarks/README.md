@@ -2,6 +2,8 @@
 
 Measured on **2026-11-06**. These are small synthetic-fixture measurements, not a general conversational quality study or a claim to be the fastest voice stack.
 
+For an explicit comparison of LLM-only generation, early streaming speech, and waiting for the full answer across three Ollama models, see **[LLM response latency and early speech](LLM_COMPARISON.md)**.
+
 ## Mac mini M4 — 16 GB unified memory
 
 10-core CPU (4 performance + 6 efficiency), MLX Whisper small, Pocket TTS 4.0.1 on two CPU threads, two sampler steps, local Ollama `qwen2.5:1.5b`. Ten warm runs per row. The LLM responds to a short capital-city question with a short sentence.

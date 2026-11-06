@@ -1,0 +1,1085 @@
+{
+  "date_utc": "2026-11-06T12:40:02.882058+00:00",
+  "hardware": "Mac mini M4, 10-core CPU, 16 GB unified memory",
+  "platform": "macOS-27.0-arm64-arm-64bit",
+  "python": "3.12.12",
+  "packages": {
+    "torch": "2.15.0",
+    "pocket-tts": "4.0.1",
+    "mlx-whisper": "0.4.3",
+    "httpx": "0.28.1"
+  },
+  "source_sha256": {
+    "src/speed_voice/__init__.py": "f65e28d775c965f100b4e463cc045001ca52811f945107e08b4f350c40e4a153",
+    "src/speed_voice/audio.py": "ef3f8782a96c29d002c8fef6716c88ad1734c945e75573342e0fad5571183b27",
+    "src/speed_voice/backends.py": "d8394ee6fabe7769cd4771fde9b56e1f940483f530f8ce18e6bdbfffdaddb479",
+    "src/speed_voice/cli.py": "e58334ed0a8aeb1292bc8ffa0b030dbc61fbc95d7274dd6545268ea5e0e1bd84",
+    "src/speed_voice/config.py": "ed4c605acdc67ed47669849613750e1c233414012254d052894cc7dd03c59cc2",
+    "src/speed_voice/llm.py": "4ed2834975cea52c1c6b2ec52fbeee40d245fb8ad9ffa9503f349bcebb3e4942",
+    "src/speed_voice/pipeline.py": "d1b484271a0a783e4f381b219a18b85ed0123c8674483e6e990b34ab279cd6df",
+    "src/speed_voice/server.py": "be7737d7fcdd4c94c23567d6724198693ffa460f265c14eb196c90f9e02c3603"
+  },
+  "model_metadata": {
+    "qwen2.5:1.5b": {
+      "name": "qwen2.5:1.5b",
+      "model": "qwen2.5:1.5b",
+      "modified_at": "2026-11-06T07:10:12.330594291-05:00",
+      "size": 986061892,
+      "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      }
+    },
+    "qwen2.5:7b": {
+      "name": "qwen2.5:7b",
+      "model": "qwen2.5:7b",
+      "modified_at": "2026-02-25T15:25:57.636704409-05:00",
+      "size": 4683087332,
+      "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "qwen2",
+        "families": [
+          "qwen2"
+        ],
+        "parameter_size": "7.6B",
+        "quantization_level": "Q4_K_M"
+      }
+    },
+    "llama3.1:latest": {
+      "name": "llama3.1:latest",
+      "model": "llama3.1:latest",
+      "modified_at": "2026-02-25T15:13:37.556231261-05:00",
+      "size": 4920753328,
+      "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "llama",
+        "families": [
+          "llama"
+        ],
+        "parameter_size": "8.0B",
+        "quantization_level": "Q4_K_M"
+      }
+    }
+  },
+  "ollama_version": "0.17.0",
+  "prompts": {
+    "short": "Quelle est la capitale de la France ? R\u00e9ponds en une phrase.",
+    "explanation": "Explique en deux phrases pourquoi le ciel est bleu et pourquoi il devient rouge au coucher du soleil."
+  },
+  "settings": {
+    "system_prompt": "You are a helpful voice assistant. Reply in the user's language. Use one or two short spoken sentences. No markdown, lists, or hidden reasoning.",
+    "max_reply_tokens": 96,
+    "temperature": 0.3,
+    "tts_language": "french",
+    "voice": "estelle",
+    "tts_device": "cpu",
+    "tts_threads": 2,
+    "decode_steps": 2,
+    "first_phrase_characters": 32
+  },
+  "measurement": "Text committed to gateway -> first token / first generated audio / observed LLM stream end. Excludes recognition, endpoint, transport and playback. Real inference, not replay.",
+  "method": "Three independent real requests per repetition: LLM only, streaming speech, buffered speech. Order rotates; outputs may differ. First LLM request per model is separate warm-up. Six measured requests per mode per model (two prompts x three repetitions).",
+  "residency": {
+    "qwen2.5:1.5b": {
+      "models": [
+        {
+          "name": "qwen2.5:1.5b",
+          "model": "qwen2.5:1.5b",
+          "size": 1353128448,
+          "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen2",
+            "families": [
+              "qwen2"
+            ],
+            "parameter_size": "1.5B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-06T07:45:04.213797-05:00",
+          "size_vram": 1353128448,
+          "context_length": 4096
+        }
+      ]
+    },
+    "qwen2.5:7b": {
+      "models": [
+        {
+          "name": "qwen2.5:7b",
+          "model": "qwen2.5:7b",
+          "size": 4806766592,
+          "digest": "845dbda0ea48ed749caafd9e6037047aa19acfcfd82e704d7ca97d631a0b697e",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "qwen2",
+            "families": [
+              "qwen2"
+            ],
+            "parameter_size": "7.6B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-06T07:45:36.313323-05:00",
+          "size_vram": 4806766592,
+          "context_length": 4096
+        }
+      ]
+    },
+    "llama3.1:latest": {
+      "models": [
+        {
+          "name": "llama3.1:latest",
+          "model": "llama3.1:latest",
+          "size": 5196212224,
+          "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+          "details": {
+            "parent_model": "",
+            "format": "gguf",
+            "family": "llama",
+            "families": [
+              "llama"
+            ],
+            "parameter_size": "8.0B",
+            "quantization_level": "Q4_K_M"
+          },
+          "expires_at": "2026-11-06T07:46:38.675212-05:00",
+          "size_vram": 5196212224,
+          "context_length": 4096
+        }
+      ]
+    }
+  },
+  "warmup": [
+    {
+      "model": "qwen2.5:1.5b",
+      "first_token_ms": 1171.5419579995796,
+      "llm_stream_done_ms": 1301.7318330239505,
+      "reply": "La capitale de la France est Paris."
+    },
+    {
+      "model": "qwen2.5:7b",
+      "first_token_ms": 4377.265166956931,
+      "llm_stream_done_ms": 4854.524957947433,
+      "reply": "La capitale de la France est Paris."
+    },
+    {
+      "model": "llama3.1:latest",
+      "first_token_ms": 4720.865750103258,
+      "llm_stream_done_ms": 5216.069833026268,
+      "reply": "La capitale de la France est Paris."
+    }
+  ],
+  "runs": [
+    {
+      "first_token_ms": 96.52895794715732,
+      "llm_stream_done_ms": 217.58483292069286,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.037708086892962456,
+      "first_token_ms": 61.13074999302626,
+      "last_token_ms": 168.59591705724597,
+      "llm_stream_done_ms": 183.5827500326559,
+      "first_audio_ms": 208.48216698504984,
+      "total_ms": 560.6636250158772,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -24.89941695239395,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006249989382922649,
+      "first_token_ms": 79.36283305753022,
+      "last_token_ms": 190.62454195227474,
+      "llm_stream_done_ms": 206.60795795265585,
+      "first_audio_ms": 264.8995000636205,
+      "total_ms": 640.7521250657737,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -58.291542110964656,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "buffered"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.00566698145121336,
+      "first_token_ms": 81.70891704503447,
+      "last_token_ms": 196.93391700275242,
+      "llm_stream_done_ms": 213.67212501354516,
+      "first_audio_ms": 238.25187503825873,
+      "total_ms": 581.9097500061616,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -24.579750024713576,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006541959010064602,
+      "first_token_ms": 78.98287498392165,
+      "last_token_ms": 192.13966699317098,
+      "llm_stream_done_ms": 206.47212490439415,
+      "first_audio_ms": 263.65974999498576,
+      "total_ms": 643.6733329901472,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -57.18762509059161,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 85.28304204810411,
+      "llm_stream_done_ms": 212.72408298682421,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.021832995116710663,
+      "first_token_ms": 77.39420793950558,
+      "last_token_ms": 185.16370793804526,
+      "llm_stream_done_ms": 199.40245791804045,
+      "first_audio_ms": 256.11962494440377,
+      "total_ms": 619.1302499501035,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -56.71716702636331,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 78.32658407278359,
+      "llm_stream_done_ms": 204.51099995989352,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.022707972675561905,
+      "first_token_ms": 84.31987499352545,
+      "last_token_ms": 195.83304191473871,
+      "llm_stream_done_ms": 212.7246669260785,
+      "first_audio_ms": 225.3892079461366,
+      "total_ms": 567.944583017379,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -12.664541020058095,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "streaming"
+    },
+    {
+      "first_token_ms": 111.16579093504697,
+      "llm_stream_done_ms": 1353.941124980338,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re blanche r\u00e9fl\u00e9chie par les \u00e9toiles et les nuages se mixe avec la lumi\u00e8re jaune de notre Soleil, ce qui nous donne une impression d'azur. Au coucher du soleil, cette lumi\u00e8re jaune commence \u00e0 \u00eatre absorb\u00e9e progressivement par l'atmosph\u00e8re terrestre, en particulier le dioxyde de carbone et les particules de poussi\u00e8re",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.022208900190889835,
+      "first_token_ms": 60.801666928455234,
+      "last_token_ms": 1504.6234169276431,
+      "first_audio_ms": 240.49899994861335,
+      "llm_stream_done_ms": 1522.2855838946998,
+      "total_ms": 2814.6674589952454,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 1281.7865839460865,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re blanche de la Terre refl\u00e8te les particules d'air dans l'espace, ce qui produit une couleur bleue. Au coucher du soleil, la lumi\u00e8re traverse plus profond\u00e9ment le ciel, passant par plusieurs couches d'atmosph\u00e8re et en partie absorb\u00e9e, ce qui rend la couleur de la lumi\u00e8re rouge plus visible.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006958027370274067,
+      "first_token_ms": 82.0354160387069,
+      "last_token_ms": 1344.7571659926325,
+      "llm_stream_done_ms": 1345.5496659735218,
+      "first_audio_ms": 1405.2894579945132,
+      "total_ms": 3565.8929580822587,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -59.739792020991445,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil traverse les atmosph\u00e8res terrestres, y compris l'oxyg\u00e8ne et l'azote qui sont pr\u00e9sents dans l'air, et ces gaz absorbent des segments de la couleur rouge et orange de la lumi\u00e8re. C'est pourquoi le ciel semble bleu au matin ou \u00e0 l'aube. Au coucher du soleil, les rayons de lumi\u00e8re passent par plus d",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "buffered"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006416928954422474,
+      "first_token_ms": 83.03779200650752,
+      "last_token_ms": 1627.221207949333,
+      "first_audio_ms": 275.4812079947442,
+      "llm_stream_done_ms": 1645.91516694054,
+      "total_ms": 2936.603375012055,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 1370.433958945796,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re blanche r\u00e9fl\u00e9chie par les nuages et l'atmosph\u00e8re de la Terre, qui passe \u00e0 travers les gaz gazeux, donne un aspect bleut\u00e9. Au coucher du soleil, ce sont ces m\u00eames gaz gazeux qui absorbent la partie rouge de la lumi\u00e8re solaire, rendant le ciel rouge au lieu de blafard.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006332993507385254,
+      "first_token_ms": 80.31366602517664,
+      "last_token_ms": 1340.2464159298688,
+      "llm_stream_done_ms": 1340.816207928583,
+      "first_audio_ms": 1407.6797079760581,
+      "total_ms": 3277.4260829901323,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -66.8635000474751,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re blanche de l'\u00e9toile se dispersent lorsqu'elles passent par les atmosph\u00e8res terrestres, ce qui donne un ton bleu \u00e0 la lumi\u00e8re. Au coucher du soleil, le rouge des \u00e9toiles et des plan\u00e8tes dans le ciel est absorb\u00e9 par la couche d'ozone de l'atmosph\u00e8re, laissant le soleil lui-m\u00eame appara\u00eetre",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 84.00795795023441,
+      "llm_stream_done_ms": 1347.7663749363273,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re blanche qui arrive de l'espace est dispers\u00e9e par les gais de l'atmosph\u00e8re, ce qui donne un aspect bleu \u00e0 notre vue. Au coucher du soleil, le rouge se manifeste car la lumi\u00e8re du soleil, plus longue et donc moins rapide dans l'air, \u00e9claboule d'autres couleurs que le bleu, notamment le rouge, cr\u00e9ant ainsi",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.01808302477002144,
+      "first_token_ms": 61.48266699165106,
+      "last_token_ms": 1306.2751250108704,
+      "llm_stream_done_ms": 1307.0364170707762,
+      "first_audio_ms": 1366.3497080560774,
+      "total_ms": 3454.8034999752417,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -59.31329098530114,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re blanche qui arrive de l'espace est divis\u00e9e en diff\u00e9rentes longueurs d'onde, dont une partie passe \u00e0 travers l'atmosph\u00e8re tandis qu'une autre est absorb\u00e9e par les gaz et particules dans l'air. C'est ce pigment bleu qui reste apr\u00e8s l'absorption que nous voyons comme ciel.\n\nAu coucher du soleil, la lumi\u00e8re de l'\u00e9toile",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 79.97770793735981,
+      "llm_stream_done_ms": 1150.1367079326883,
+      "reply": "Le ciel est bleu car la lumi\u00e8re blanche que nous voyons r\u00e9agit \u00e0 l'oxyg\u00e8ne dans l'atmosph\u00e8re, produisant un effet color\u00e9 qui donne le bleu. \u00c0 la fin de la journ\u00e9e, lorsque le soleil se couche, il \u00e9met plus de rougeur, ce qui rend le ciel du soir plus rouge.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.02320797648280859,
+      "first_token_ms": 62.05379101447761,
+      "last_token_ms": 1750.4829579265788,
+      "first_audio_ms": 233.77437493763864,
+      "llm_stream_done_ms": 1770.8403329597786,
+      "total_ms": 2940.6684159766883,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 1537.06595802214,
+      "reply": "Le ciel est souvent bleu parce que la lumi\u00e8re blanche de l'\u00e9toile est dispers\u00e9e par les gaz atmosph\u00e9riques, ce qui donne un reflet bleu \u00e0 la lumi\u00e8re visible. Au coucher du soleil, le rouge se manifeste car la lumi\u00e8re traverse plus profond\u00e9ment les couchers d'oxyg\u00e8ne et d'autres gaz dans l'atmosph\u00e8re, r\u00e9duisant la fr\u00e9quence de la lumi\u00e8re visible.",
+      "model": "qwen2.5:1.5b",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "streaming"
+    },
+    {
+      "first_token_ms": 100.75829201377928,
+      "llm_stream_done_ms": 565.2377079240978,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.04683295264840126,
+      "first_token_ms": 97.24712499883026,
+      "last_token_ms": 524.9609580496326,
+      "llm_stream_done_ms": 589.4925829488784,
+      "first_audio_ms": 642.8310420596972,
+      "total_ms": 1010.7476250268519,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -53.3384591108188,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.00666698906570673,
+      "first_token_ms": 118.8737079501152,
+      "last_token_ms": 536.9119169190526,
+      "llm_stream_done_ms": 588.091625017114,
+      "first_audio_ms": 650.4616669844836,
+      "total_ms": 1003.3525829203427,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -62.370041967369616,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "buffered"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006291898898780346,
+      "first_token_ms": 118.59766696579754,
+      "last_token_ms": 557.3080419562757,
+      "first_audio_ms": 563.1875419057906,
+      "llm_stream_done_ms": 633.1172079080716,
+      "total_ms": 959.3116249889135,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 69.92966600228101,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.00558304600417614,
+      "first_token_ms": 117.16791603248566,
+      "last_token_ms": 542.8900000406429,
+      "llm_stream_done_ms": 595.7994579803199,
+      "first_audio_ms": 657.6362909981981,
+      "total_ms": 1041.232957970351,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -61.836833017878234,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 117.47841606847942,
+      "llm_stream_done_ms": 584.9282910348848,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.022625084966421127,
+      "first_token_ms": 98.51575002539903,
+      "last_token_ms": 514.3303329823539,
+      "llm_stream_done_ms": 566.178833018057,
+      "first_audio_ms": 624.9282920034602,
+      "total_ms": 1002.2441250039265,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -58.74945898540318,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 118.64241701550782,
+      "llm_stream_done_ms": 576.1988339945674,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.028374954126775265,
+      "first_token_ms": 97.56649995688349,
+      "last_token_ms": 517.6952909678221,
+      "first_audio_ms": 522.0310830045491,
+      "llm_stream_done_ms": 590.4962079366669,
+      "total_ms": 871.1111249867827,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 68.46512493211776,
+      "reply": "La capitale de la France est Paris.",
+      "model": "qwen2.5:7b",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "streaming"
+    },
+    {
+      "first_token_ms": 217.6187919685617,
+      "llm_stream_done_ms": 4220.2213749988005,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re r\u00e9fl\u00e9chit et diffusent plus les rayons bleus de la lumi\u00e8re solaire. Au coucher du soleil, la lumi\u00e8re doit voyager plus loin dans l'atmosph\u00e8re, ce qui fait dispara\u00eetre les couleurs violettes et bleues, laissant principalement le rouge.",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.022500054910779,
+      "first_token_ms": 99.08466704655439,
+      "last_token_ms": 5881.757042021491,
+      "first_audio_ms": 739.4095840863883,
+      "llm_stream_done_ms": 5883.175792056136,
+      "total_ms": 6264.872375060804,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 5143.7662079697475,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re de la Terre disperse plus les couleurs violettes et bleues, qui nous parviennent sous forme de lumi\u00e8re blanche. Au coucher du soleil, le soleil se trouve \u00e0 l'horizon, faisant passer la lumi\u00e8re \u00e0 travers une grande \u00e9paisseur d'atmosph\u00e8re, ce qui fait que seulement les longueurs d'onde rouges et orange",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006209011189639568,
+      "first_token_ms": 116.58299993723631,
+      "last_token_ms": 3691.8714169878513,
+      "llm_stream_done_ms": 3741.4408340118825,
+      "first_audio_ms": 3807.1695839753374,
+      "total_ms": 5337.841541972011,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -65.7287499634549,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re r\u00e9fl\u00e9chit et diffuse plus efficacement les couleurs bleues de la lumi\u00e8re solaire. Au coucher du soleil, la lumi\u00e8re doit voyager plus loin dans l'atmosph\u00e8re, ce qui fait dispara\u00eetre les autres couleurs et laisse le rouge.",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "buffered"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.005458015948534012,
+      "first_token_ms": 122.31729098130018,
+      "last_token_ms": 6060.561166028492,
+      "first_audio_ms": 768.9763329690322,
+      "llm_stream_done_ms": 6062.0622909627855,
+      "total_ms": 6307.489624945447,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 5293.085957993753,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re de la Terre disperse plus les couleurs violettes et bleues des rayons solaires, qui nous parviennent alors dans cette couleur. Au coucher du soleil, le soleil se trouve \u00e0 un angle plus bas, ses rayons doivent traverser plus d'atmosph\u00e8re, ce qui fait que seulement la lumi\u00e8re rouge est visible, donnant au ciel son teint",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006166053935885429,
+      "first_token_ms": 119.13125007413328,
+      "last_token_ms": 4571.1372080259025,
+      "llm_stream_done_ms": 4621.109333005734,
+      "first_audio_ms": 4679.73716603592,
+      "total_ms": 6716.819416033104,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -58.62783303018659,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re de la Terre disperse plus les couleurs violettes et bleues, qui nous parviennent principalement. Au coucher du soleil, le soleil se trouve \u00e0 l'horizon, ce qui fait que la lumi\u00e8re doit voyager plus dans l'atmosph\u00e8re, absorbant davantage les couleurs bleues et laissant passer surtout le rouge.",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 122.59112496394664,
+      "llm_stream_done_ms": 3871.1232079658657,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re r\u00e9fl\u00e9chit et diffuse plus les rayons bleus du soleil. Au coucher, le soleil se dresse \u00e0 l'horizon, ses rayons doivent traverser plus d'atmosph\u00e8re, ce qui fait para\u00eetre le ciel rouge.",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.023582950234413147,
+      "first_token_ms": 97.72820794023573,
+      "last_token_ms": 4452.9742079321295,
+      "llm_stream_done_ms": 4504.659041995183,
+      "first_audio_ms": 4564.207999967039,
+      "total_ms": 6400.415624957532,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -59.548957971856,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re r\u00e9fl\u00e9chit et diffuse plus efficacement les rayons bleus du soleil. Au coucher, le soleil se trouvant bas, ses rayons passent plus longtemps \u00e0 travers l'atmosph\u00e8re, ce qui fait que seulement les ondes rouges arrivent jusqu'\u00e0 nos yeux, rendant le ciel rouge.",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 123.69174999184906,
+      "llm_stream_done_ms": 4294.514541979879,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re diffuse plus les couleurs courtes de la lumi\u00e8re solaire, qui sont bleues. Au coucher, le soleil se trouve \u00e0 l'horizon, sa lumi\u00e8re doit traverser plus d'air, ce qui fait que seulement les longueurs d'onde rouges passent directement jusqu'\u00e0 nos yeux.",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.026709050871431828,
+      "first_token_ms": 102.70920896437019,
+      "last_token_ms": 5484.412334044464,
+      "first_audio_ms": 744.1912919748574,
+      "llm_stream_done_ms": 5535.371250007302,
+      "total_ms": 5956.7212499678135,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 4791.179958032444,
+      "reply": "Le ciel est bleu parce que l'atmosph\u00e8re de la Terre disperse davantage les rayons bleus du soleil dans toutes les directions. Au coucher du soleil, le ciel devient rouge car les rayons du soleil doivent traverser plus d'atmosph\u00e8re pour atteindre nos yeux, ce qui fait que seulement les ondes longues comme le rouge sont dispers\u00e9es.",
+      "model": "qwen2.5:7b",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "streaming"
+    },
+    {
+      "first_token_ms": 117.58637498132885,
+      "llm_stream_done_ms": 629.1084999684244,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.05579204298555851,
+      "first_token_ms": 112.49349999707192,
+      "last_token_ms": 554.0758750867099,
+      "llm_stream_done_ms": 623.6129170283675,
+      "first_audio_ms": 670.6279170466587,
+      "total_ms": 1010.2815420832485,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -47.015000018291175,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006124959327280521,
+      "first_token_ms": 130.70179102942348,
+      "last_token_ms": 581.37520798482,
+      "llm_stream_done_ms": 636.9082910241559,
+      "first_audio_ms": 675.8443749276921,
+      "total_ms": 1056.9503749720752,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -38.9360839035362,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 1,
+      "mode": "buffered"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006792019121348858,
+      "first_token_ms": 129.2266669915989,
+      "last_token_ms": 588.9032089617103,
+      "first_audio_ms": 585.3418749757111,
+      "llm_stream_done_ms": 663.3835419779643,
+      "total_ms": 984.4290419714525,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 78.04166700225323,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006499933078885078,
+      "first_token_ms": 135.4486249620095,
+      "last_token_ms": 563.3663749322295,
+      "llm_stream_done_ms": 616.1887500202283,
+      "first_audio_ms": 676.566332927905,
+      "total_ms": 1041.2375419400632,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -60.3775829076767,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 139.0174999833107,
+      "llm_stream_done_ms": 616.7026669718325,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 2,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.01762493047863245,
+      "first_token_ms": 108.52154099848121,
+      "last_token_ms": 529.2122079990804,
+      "llm_stream_done_ms": 582.166290958412,
+      "first_audio_ms": 640.0867910124362,
+      "total_ms": 1012.846083031036,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -57.92050005402416,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 127.57704104296863,
+      "llm_stream_done_ms": 605.8809160022065,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.01950003206729889,
+      "first_token_ms": 107.50858299434185,
+      "last_token_ms": 547.1832910552621,
+      "first_audio_ms": 551.0715410346165,
+      "llm_stream_done_ms": 624.435625039041,
+      "total_ms": 911.3413750892505,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 73.36408400442451,
+      "reply": "La capitale de la France est Paris.",
+      "model": "llama3.1:latest",
+      "prompt": "short",
+      "repetition": 3,
+      "mode": "streaming"
+    },
+    {
+      "first_token_ms": 246.40779197216034,
+      "llm_stream_done_ms": 5543.431916972622,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil contient toutes les couleurs de l'arc-en-ciel, mais nous voyons surtout le bleu qui se r\u00e9fl\u00e9chit dans notre atmosph\u00e8re.\n\nAu coucher du soleil, le soleil se trouve bas sur l'horizon et doit traverser plus d'atmosph\u00e8re pour arriver jusqu'\u00e0 nos yeux, ce qui fait que les courtes longue",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.007500057108700275,
+      "first_token_ms": 116.773791029118,
+      "last_token_ms": 6064.479749999009,
+      "first_audio_ms": 690.2710410067812,
+      "llm_stream_done_ms": 6066.558208083734,
+      "total_ms": 6436.287791002542,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 5376.287167076953,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil se compose de toutes les couleurs de l'arc-en-ciel, mais nous voyons surtout le bleu qui est absorb\u00e9 par notre atmosph\u00e8re.\n\nAu coucher du soleil, le ciel devient rouge car la lumi\u00e8re doit parcourir plus d'atmosph\u00e8re pour arriver \u00e0 nos yeux, ce qui fait que les couleurs rouges et orang\u00e9es sont",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.005875015631318092,
+      "first_token_ms": 131.89062499441206,
+      "last_token_ms": 5337.763666990213,
+      "llm_stream_done_ms": 5392.7929169731215,
+      "first_audio_ms": 5454.54783400055,
+      "total_ms": 7379.947292036377,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -61.754917027428746,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil contient des rayons de toutes les couleurs, mais la couleur bleue se refl\u00e8te mieux dans l'atmosph\u00e8re terrestre.\n\nAu coucher du soleil, le ciel devient rouge car la lumi\u00e8re doit parcourir plus d'air pour atteindre nos yeux, ce qui fait que les rayons rouges sont r\u00e9fl\u00e9chis davantage.",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 1,
+      "mode": "buffered"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006332993507385254,
+      "first_token_ms": 135.8056659810245,
+      "last_token_ms": 5139.067457988858,
+      "first_audio_ms": 686.0482500633225,
+      "llm_stream_done_ms": 5216.525791096501,
+      "total_ms": 5553.449291037396,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 4530.477541033179,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil contient des rayons de toutes les couleurs, mais la couleur bleue est la plus visible dans l'air. Au coucher du soleil, la lumi\u00e8re traverse plus d'atmosph\u00e8re et les longueurs d'onde rouges sont moins absorb\u00e9es, ce qui fait que le ciel semble rouge.",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "streaming"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.006332993507385254,
+      "first_token_ms": 139.61954205296934,
+      "last_token_ms": 5043.931958032772,
+      "llm_stream_done_ms": 5100.60008300934,
+      "first_audio_ms": 5169.105750042945,
+      "total_ms": 7154.09012499731,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -68.50566703360528,
+      "reply": "Le ciel appara\u00eet bleu \u00e0 cause de la r\u00e9flexion des rayons solaires sur les mol\u00e9cules d'air qui absorbent les couleurs, sauf le bleu. Au coucher du soleil, lorsque le soleil est bas, ses rayons doivent traverser plus de mol\u00e9cules d'air, ce qui fait que nous voyons surtout la couleur rouge qu'ils ne peuvent pas absorber.",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 141.06462500058115,
+      "llm_stream_done_ms": 5249.418583000079,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil contient toutes les couleurs de l'arc-en-ciel, mais nous voyons surtout la couleur bleue qui se r\u00e9fl\u00e9chit dans l'atmosph\u00e8re.\n\nAu coucher du soleil, le soleil se met \u00e0 traverser plus d'air et les rayons de lumi\u00e8re sont d\u00e9vi\u00e9s vers la couleur rouge, ce qui fait que le ciel semble rou",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 2,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.03516697324812412,
+      "first_token_ms": 115.28150003869087,
+      "last_token_ms": 5126.895833993331,
+      "llm_stream_done_ms": 5185.403959010728,
+      "first_audio_ms": 5308.188250055537,
+      "total_ms": 7089.179167058319,
+      "audio_before_llm_done": false,
+      "audio_lead_ms": -122.78429104480892,
+      "reply": "Le ciel appara\u00eet bleu car la lumi\u00e8re du soleil est compos\u00e9e de toutes les couleurs de l'arc-en-ciel, mais notre \u0153il voit principalement le bleu. Au coucher du soleil, la lumi\u00e8re traverse plus d'atmosph\u00e8re et les longueurs d'onde rouges sont moins absorb\u00e9es, ce qui fait que le ciel semble rouge.",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "buffered"
+    },
+    {
+      "first_token_ms": 160.89458297938108,
+      "llm_stream_done_ms": 5319.434750010259,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil contient toutes les couleurs de l'arc-en-ciel, mais la couleur bleue est la seule qui peut passer \u00e0 travers l'atmosph\u00e8re sans \u00eatre absorb\u00e9e.\n\nAu coucher du soleil, le ciel devient rouge car la lumi\u00e8re du soleil doit parcourir plus d'atmosph\u00e8re pour arriver jusqu'\u00e0 nous, ce qui fait que les cou",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "llm_only"
+    },
+    {
+      "turn_id": 1,
+      "stt_ms": 0.03104202914983034,
+      "first_token_ms": 123.5814579995349,
+      "last_token_ms": 6107.045999960974,
+      "first_audio_ms": 766.0965829854831,
+      "llm_stream_done_ms": 6163.724625017494,
+      "total_ms": 6729.668666957878,
+      "audio_before_llm_done": true,
+      "audio_lead_ms": 5397.628042032011,
+      "reply": "Le ciel est bleu parce que la lumi\u00e8re du soleil contient des rayons de toutes les couleurs, mais la couleur bleue a une longueur d'onde plus courte qui arrive en premier. Au coucher du soleil, la lumi\u00e8re doit parcourir plus de gaz dans l'atmosph\u00e8re, ce qui fait que les rayons rouges arrivent en dernier et donnent ainsi un ton rouge au ciel.",
+      "model": "llama3.1:latest",
+      "prompt": "explanation",
+      "repetition": 3,
+      "mode": "streaming"
+    }
+  ],
+  "summary": {
+    "qwen2.5:1.5b": {
+      "llm_only": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 84.64549999916926,
+          "p95": 107.50658268807456
+        },
+        "llm_stream_done_ms": {
+          "p50": 683.8607704266906,
+          "p95": 1352.3974374693353
+        }
+      },
+      "streaming": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 71.88135402975604,
+          "p95": 83.99935424677096
+        },
+        "first_audio_ms": {
+          "p50": 236.0131249879487,
+          "p95": 266.7356559832115
+        },
+        "llm_stream_done_ms": {
+          "p50": 867.9788544541225,
+          "p95": 1739.609041454969
+        },
+        "audio_lead_ms": {
+          "p50": 634.5610214630142,
+          "p95": 1495.407958253054
+        },
+        "audio_before_llm_done_count": 3
+      },
+      "buffered": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 79.17285402072594,
+          "p95": 81.60497853532434
+        },
+        "first_audio_ms": {
+          "p50": 815.6246040598489,
+          "p95": 1407.082145480672
+        },
+        "llm_stream_done_ms": {
+          "p50": 756.822187511716,
+          "p95": 1344.366301462287
+        },
+        "audio_lead_ms": {
+          "p50": -58.802416548132896,
+          "p95": -56.83478154242039
+        },
+        "audio_before_llm_done_count": 0
+      }
+    },
+    "qwen2.5:7b": {
+      "llm_only": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 120.61677098972723,
+          "p95": 194.13703147438355
+        },
+        "llm_stream_done_ms": {
+          "p50": 2228.0257495003752,
+          "p95": 4275.9412502346095
+        }
+      },
+      "streaming": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 100.89693800546229,
+          "p95": 121.38738497742452
+        },
+        "first_audio_ms": {
+          "p50": 691.1203130730428,
+          "p95": 762.7800727204885
+        },
+        "llm_stream_done_ms": {
+          "p50": 3084.2442289576866,
+          "p95": 6017.340666236123
+        },
+        "audio_lead_ms": {
+          "p50": 2430.5548120173626,
+          "p95": 5255.756020487752
+        },
+        "audio_before_llm_done_count": 5
+      },
+      "buffered": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 116.87545798486099,
+          "p95": 119.06686454312876
+        },
+        "first_audio_ms": {
+          "p50": 2232.4029374867678,
+          "p95": 4650.8548745187
+        },
+        "llm_stream_done_ms": {
+          "p50": 2168.620145996101,
+          "p95": 4591.996760253096
+        },
+        "audio_lead_ms": {
+          "p50": -60.692895494867116,
+          "p95": -58.65823951899074
+        },
+        "audio_before_llm_done_count": 0
+      }
+    },
+    "llama3.1:latest": {
+      "llm_only": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 140.04106249194592,
+          "p95": 225.02948972396553
+        },
+        "llm_stream_done_ms": {
+          "p50": 2939.2635414842516,
+          "p95": 5487.432625232032
+        }
+      },
+      "streaming": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 120.17762451432645,
+          "p95": 134.1609162336681
+        },
+        "first_audio_ms": {
+          "p50": 678.3380835549906,
+          "p95": 747.1401974908076
+        },
+        "llm_stream_done_ms": {
+          "p50": 2939.9546665372327,
+          "p95": 6139.433020784054
+        },
+        "audio_lead_ms": {
+          "p50": 2304.259604017716,
+          "p95": 5392.292823293246
+        },
+        "audio_before_llm_done_count": 5
+      },
+      "buffered": {
+        "n": 6,
+        "first_token_ms": {
+          "p50": 131.29620801191777,
+          "p95": 138.57681278022937
+        },
+        "first_audio_ms": {
+          "p50": 2922.836041485425,
+          "p95": 5417.957938014297
+        },
+        "llm_stream_done_ms": {
+          "p50": 2868.754187016748,
+          "p95": 5340.945677482523
+        },
+        "audio_lead_ms": {
+          "p50": -61.06624996755272,
+          "p95": -43.68218794115819
+        },
+        "audio_before_llm_done_count": 0
+      }
+    }
+  }
+}

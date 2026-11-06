@@ -69,7 +69,8 @@ The reference is encoded once at startup. It is not uploaded to the LLM. Voice p
 - Resident speech models and precomputed voice conditioning.
 - 32 ms microphone frames; Silero VAD with pre-roll and configurable endpoint silence.
 - LLM token streaming overlaps a bounded phrase queue and TTS audio streaming.
-- The first short clause can be spoken before the complete answer exists.
+- The first short clause, or roughly 32 characters ending at a word boundary, can be spoken before the complete answer exists. Subsequent chunks allow up to 140 characters for smoother phrasing.
+- Metrics explicitly compare first audio with the end of the LLM stream; see the [Ollama comparison](benchmarks/LLM_COMPARISON.md).
 - Barge-in cancels the LLM request, signals native synthesis, and clears client playback.
 - A single active session avoids unbounded GPU queues. Deploy separate workers for more users.
 
